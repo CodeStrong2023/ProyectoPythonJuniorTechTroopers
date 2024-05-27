@@ -26,3 +26,24 @@ class Connection:
             cls._instances[db_key]._connection = None
             cls._instances[db_key]._db_key = db_key
         return cls._instances[db_key]
+
+         def connect(self):
+        """
+        Método para establecer la conexión a la base de datos usando las credenciales especificadas en el archivo .env.
+
+        :return: Objeto de conexión a la base de datos.
+        """
+        if self._connection is None or not self._connection.is_connected():
+            try:
+                self._connection = mysql.connector.connect(
+                    host=os.getenv(f'DB_HOST_{self._db_key}'),
+                    port=os.getenv(f'DB_PORT_{self._db_key}'),
+                    user=os.getenv(f'DB_USER_{self._db_key}'),
+                    password=os.getenv(f'DB_PASSWORD_{self._db_key}'),
+                    database=os.getenv(f'DB_NAME_{self._db_key}')
+                )
+                if self._connection.is_connected():
+                    print(f"Conexión exitosa a la base de datos {self._db_key}")
+            except Error as e:
+                print(f"Error al conectar a la base de datos {self._db_key}: {e}")
+        return self._connection
