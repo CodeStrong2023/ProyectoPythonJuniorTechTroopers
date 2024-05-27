@@ -27,7 +27,7 @@ class Connection:
             cls._instances[db_key]._db_key = db_key
         return cls._instances[db_key]
 
-         def connect(self):
+    def connect(self):
         """
         Método para establecer la conexión a la base de datos usando las credenciales especificadas en el archivo .env.
 
@@ -48,37 +48,36 @@ class Connection:
                 print(f"Error al conectar a la base de datos {self._db_key}: {e}")
         return self._connection
 
-
     def close(self):
-            """
-            Método para cerrar la conexión a la base de datos si está abierta.
-            """
-            if self._connection is not None and self._connection.is_connected():
-                self._connection.close()
-                print(f"Conexión a la base de datos {self.dbkey} cerrada")
+        """
+        Método para cerrar la conexión a la base de datos si está abierta.
+        """
+        if self._connection is not None and self._connection.is_connected():
+            self._connection.close()
+            print(f"Conexión a la base de datos {self._db_key} cerrada")
 
-    Utilizando la clase Connection con Singleton para dos bases de datos
-    if name == "__main":
-        # Conexión a la primera base de datos (DATABASE_USERS)
-        db_connection_users = Connection("1")
-        connection_users = db_connection_users.connect()
+# Utilizando la clase Connection con Singleton para dos bases de datos
+if __name__ == "__main__":
+    # Conexión a la primera base de datos (DATABASE_USERS)
+    db_connection_users = Connection("1")
+    connection_users = db_connection_users.connect()
 
-        # Ejemplo de operación: SELECT DATABASE() en la primera base de datos
-        cursor_users = connection_users.cursor()
-        cursor_users.execute("SELECT DATABASE();")
-        record_users = cursor_users.fetchone()
-        print("Conectado a la base de datos:", record_users)
+    # Ejemplo de operación: SELECT DATABASE() en la primera base de datos
+    cursor_users = connection_users.cursor()
+    cursor_users.execute("SELECT DATABASE();")
+    record_users = cursor_users.fetchone()
+    print("Conectado a la base de datos:", record_users)
 
-        # Conexión a la segunda base de datos (DATABASE_STAIES)
-        db_connection_stays = Connection("2")
-        connection_stays = db_connection_stays.connect()
+    # Conexión a la segunda base de datos (DATABASE_STAIES)
+    db_connection_stays = Connection("2")
+    connection_stays = db_connection_stays.connect()
 
-        # Ejemplo de operación: SELECT DATABASE() en la segunda base de datos
-        cursor_stays = connection_stays.cursor()
-        cursor_stays.execute("SELECT DATABASE();")
-        record_stays = cursor_stays.fetchone()
-        print("Conectado a la base de datos:", record_stays)
+    # Ejemplo de operación: SELECT DATABASE() en la segunda base de datos
+    cursor_stays = connection_stays.cursor()
+    cursor_stays.execute("SELECT DATABASE();")
+    record_stays = cursor_stays.fetchone()
+    print("Conectado a la base de datos:", record_stays)
 
-        # Cerrando las conexiones
-        db_connection_users.close()
-        db_connection_stays.close()
+    # Cerrando las conexiones
+    db_connection_users.close()
+    db_connection_stays.close()
