@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="b4ce489b-e34a-410b-83d6-b262e40d09a5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/Builder.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/SingletonUser.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Stay.py" afterDir="false" />
+    <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/utils/validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.env-example" beforeDir="false" afterPath="$PROJECT_DIR$/src/.env-example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/correo2.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,32 +29,54 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2gcMNBXyPurYeE9Mjjb44FDOKL4" />
+  <component name="ProjectId" id="2hAEYGA6UcU3DwF9cYN8QalY84t" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Users/Franc/Desktop/Nueva carpeta (2)/ProyectoPythonJuniorTechTroopers"
+    "git-widget-placeholder": "validation",
+    "last_opened_file_path": "C:/Users/Mauro Barroso/ProjectPython"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Nelson\Desktop\ProyectoPythonJuniorTechTroopers" />
-    </key>
+  <component name="RunManager">
+    <configuration name="validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ProyectoPythonJuniorTechTroopers" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/utils/validation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.validation" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b4ce489b-e34a-410b-83d6-b262e40d09a5" name="Changes" comment="" />
-      <created>1715992369655</created>
+      <changelist id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="" />
+      <created>1717028527452</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1715992369655</updated>
+      <updated>1717028527452</updated>
     </task>
     <servers />
   </component>
