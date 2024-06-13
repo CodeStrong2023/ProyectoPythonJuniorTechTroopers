@@ -1,40 +1,76 @@
+# src/utils/EmailVerification.py
 
-import smtplib
-import random
-from email.message import EmailMessage
-from dotenv import load_dotenv
 import os
 import re
-
+import random
+import smtplib
+from email.message import EmailMessage
+from dotenv import load_dotenv
 
 class EmailVerification:
-    def __init__(self):
+    """
+    Clase para la verificación de correos electrónicos y el envío de códigos de verificación.
 
-    # Carga de las variables de entorno desde un archivo .env
+    Attributes:
+        email (str): Dirección de correo electrónico para enviar mensajes.
+        password (str): Contraseña del correo electrónico.
+        conexion: Conexión SMTP para el envío de correos electrónicos.
+        codigo_aleatorio (int): Código de verificación generado aleatoriamente.
+    """
+
+    def __init__(self):
+        """
+        Constructor de la clase.
+        """
         load_dotenv()
         self.email = os.getenv('EMAIL')
         self.password = os.getenv('KEY')
         self.conexion = None
+        self.codigo_aleatorio = None
 
-    # Método que genera un código aleatorio de 6 dígitos
     def generar_codigo_aleatorio(self):
-        return random.randint(100000, 999999)
+        """
+        Genera un código de verificación aleatorio de seis dígitos.
 
-    # Validación para ver si el formato de correo es correcto
+        Returns:
+            int: Código de verificación generado.
+        """
+        self.codigo_aleatorio = random.randint(100000, 999999)
+        return self.codigo_aleatorio
+
     def es_correo_valido(self, correo):
+        """
+        Verifica si la dirección de correo electrónico proporcionada es válida.
+
+        Args:
+            correo (str): Dirección de correo electrónico a verificar.
+
+        Returns:
+            bool: True si la dirección de correo electrónico es válida, False de lo contrario.
+        """
         patron = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
         return re.match(patron, correo)
 
-    # Establece la conexión con el servidor SMTP y realiza la autenticación
     def conectar_smtp(self):
+        """
+        Establece una conexión SMTP con el servidor de correo electrónico.
+        """
         self.conexion = smtplib.SMTP(host='smtp.gmail.com', port=587)
         self.conexion.starttls()
         self.conexion.login(user=self.email, password=self.password)
 
-    # Creación y envio del correo electrónico con el código de verificación
     def enviar_correo(self, correo_destino):
+        """
+        Envía un correo electrónico con el código de verificación al destinatario.
+
+        Args:
+            correo_destino (str): Dirección de correo electrónico del destinatario.
+
+        Raises:
+            ValueError: Si la dirección de correo electrónico no es válida.
+        """
         if not self.es_correo_valido(correo_destino):
-            raise ValueError("Correo electrónico no válido, por favor ingresalo nuevamente")
+            raise ValueError("Correo electrónico no válido, por favor ingrésalo nuevamente")
 
         codigo_aleatorio = self.generar_codigo_aleatorio()
         asunto = 'Validación'
@@ -48,21 +84,21 @@ class EmailVerification:
         self.conexion.send_message(mensaje)
         print("Correo enviado exitosamente!")
 
-    # Cierre de la conexión con el servidor SMPT
     def cerrar_conexion(self):
+        """
+        Cierra la conexión SMTP.
+        """
         if self.conexion:
             self.conexion.quit()
 
+    def verificar_codigo(self, codigo_ingresado):
+        """
+        Verifica si el código ingresado coincide con el código de verificación generado.
 
-    # Uso de la clase
-if __name__ == "__main__":
-    email_verification = EmailVerification()
-    email_verification.conectar_smtp()
-    try:
-        correo_destino = input("Ingresa el correo del destinatario: ")
-        email_verification.enviar_correo(correo_destino)
-    except ValueError as e:
-        print(e)
-    finally:
-        email_verification.cerrar_conexion()
-n.cerrar_conexion()
+        Args:
+            codigo_ingresado (str): Código ingresado por el usuario.
+
+        Returns:
+            bool: True si el código ingresado es correcto, False de lo contrario.
+        """
+        return str(codigo_ingresado) == str(self.codigo_aleatorio)
