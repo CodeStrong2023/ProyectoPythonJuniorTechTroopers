@@ -1,42 +1,53 @@
 class User:
-    def __init__(self, id, username, password, email, first_name, last_name, age, phone, cash):
-        self._id = id
+    def __init__(self, usuario_id, username, password, nombre, apellido, email, documento, fecha_nacimiento, edad, telefono, saldo, activo):
+        self.usuario_id = usuario_id
         self._username = username
         self._password = password
+        self._nombre = nombre
+        self._apellido = apellido
         self._email = email
-        self._first_name = first_name
-        self._last_name = last_name
-        self._age = age
-        self._phone = phone
-        self._cash = cash
-
+        self._documento = documento
+        self._fecha_nacimiento = fecha_nacimiento
+        self._edad = edad
+        self._telefono = telefono
+        self._saldo = saldo
+        self._activo = activo
     # Getters
-    def get_id(self):
-        return self._id
+    def get_usuario_id(self):
+        return self._usuario_id
 
-    def get_user_name(self):
+    def get_username(self):
         return self._username
 
     def get_password(self):
         return self._password
 
+    def get_nombre(self):
+        return self._nombre
+
+    def get_apellido(self):
+        return self._apellido
+
     def get_email(self):
         return self._email
 
-    def get_first_name(self):
-        return self._first_name
+    def get_documento(self):
+        return self._documento
 
-    def get_last_name(self):
-        return self._last_name
+    def get_fecha_nacimiento(self):
+        return self._fecha_nacimiento
 
-    def get_age(self):
-        return self._age
+    def get_edad(self):
+        return self._edad
 
-    def get_phone(self):
-        return self._phone
+    def get_telefono(self):
+        return self._telefono
 
-    def get_cash(self):
-        return self._cash
+    def get_saldo(self):
+        return self._saldo
+
+    def get_activo(self):
+        return self._activo
 
     # Setters
     def set_username(self, username):
@@ -45,23 +56,32 @@ class User:
     def set_password(self, password):
         self._password = password
 
+    def set_nombre(self, nombre):
+        self._nombre = nombre
+
+    def set_apellido(self, apellido):
+        self._apellido = apellido
+
     def set_email(self, email):
         self._email = email
 
-    def set_first_name(self, first_name):
-        self._first_name = first_name
+    def set_documento(self, documento):
+        self._documento = documento
 
-    def set_last_name(self, last_name):
-        self._last_name = last_name
+    def set_fecha_nacimiento(self, fecha_nacimiento):
+        self._fecha_nacimiento = fecha_nacimiento
 
-    def set_age(self, age):
-        self._age = age
+    def set_edad(self, edad):
+        self._edad = edad
 
-    def set_phone(self, phone):
-        self._phone = phone
+    def set_telefono(self, telefono):
+        self._telefono = telefono
 
-    def set_cash(self, cash):
-        self._cash = cash
+    def set_saldo(self, saldo):
+        self._saldo = saldo
+
+    def set_activo(self, activo):
+        self._activo = activo
 
     # Para aplicar el método Builder en la clase Start,
     # primero necesitamos entender que el patrón Builder
@@ -70,18 +90,21 @@ class User:
     # parámetros para su construcción y estos parámetros no son siempre necesarios.
     class BuilderUser:
         def __init__(self):
-            self._id = None
+            self._usuario_id = None
             self._username = None
             self._password = None
+            self._nombre = None
+            self._apellido = None
             self._email = None
-            self._first_name = None
-            self._last_name = None
-            self._age = None
-            self._phone = None
-            self._cash = None
+            self._documento = None
+            self._fecha_nacimiento = None
+            self._edad = None
+            self._telefono = None
+            self._saldo = None
+            self._activo = None
 
-        def set_id(self, id):
-            self._id = id
+        def set_usuario_id(self, usuario_id):
+            self._usuario_id = usuario_id
             return self
 
         def set_username(self, username):
@@ -92,33 +115,47 @@ class User:
             self._password = password
             return self
 
+        def set_nombre(self, nombre):
+            self._nombre = nombre
+            return self
+
+        def set_apellido(self, apellido):
+            self._apellido = apellido
+            return self
+
         def set_email(self, email):
             self._email = email
             return self
 
-        def set_first_name(self, first_name):
-            self._first_name = first_name
+        def set_documento(self, documento):
+            self._documento = documento
             return self
 
-        def set_last_name(self, last_name):
-            self._last_name = last_name
+        def set_fecha_nacimiento(self, fecha_nacimiento):
+            self._fecha_nacimiento = fecha_nacimiento
             return self
 
-        def set_age(self, age):
-            self._age = age
+        def set_edad(self, edad):
+            self._edad = edad
             return self
 
-        def set_phone(self, phone):
-            self._phone = phone
+        def set_telefono(self, telefono):
+            self._telefono = telefono
             return self
 
-        def set_cash(self, cash):
-            self._cash = cash
+        def set_saldo(self, saldo):
+            self._saldo = saldo
             return self
+
+        def set_activo(self, activo):
+            self._activo = activo
+            return self
+
+
 
         def build(self):
-            return User(self._id, self._username, self._password, self._email, self._first_name, self._last_name,
-                        self._age, self._phone, self._cash)
+            return User(self._usuario_id, self._username, self._password, self._nombre, self._apellido, self._email, self._documento,
+                        self._fecha_nacimiento, self._edad, self._telefono, self._saldo, self._activo)
 
 """
 if __name__ == '__main__':
