@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/encription.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/encription.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/user.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,10 +27,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2hAEYGA6UcU3DwF9cYN8QalY84t" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,14 +40,13 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "encryption",
-    "last_opened_file_path": "D:/TestPropios/PythonHospedaje"
+    "git-widget-placeholder": "form",
+    "last_opened_file_path": "C:/Users/maria/Desktop/ProyectoPythonJuniorTechTroopers"
   }
 }]]></component>
   <component name="RunManager" selected="Python.encription">
     <configuration name="encription" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -78,7 +78,6 @@
     </configuration>
     <configuration name="validation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
-      <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
