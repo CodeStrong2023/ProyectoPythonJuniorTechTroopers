@@ -1,10 +1,9 @@
-# src/form/Create_user.py
-
 import tkinter as tk
 from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
 from src.model.SessionManager import SessionManager
 from src.utils.validation import EmailVerification
+from datetime import datetime
 
 
 class Create_user:
@@ -40,7 +39,7 @@ class Create_user:
         style.configure('TLabel', font=('Arial', 12))
         style.configure('TEntry', font=('Arial', 12))
         style.configure('TButton', font=('Arial', 12), padding=10)
-        style.configure('TFrame', background='#f0f0f0')
+        style.configure('TFrame', background='#3A4F3F')
 
         # Crear marco principal
         main_frame = ttk.Frame(self.root, padding="10 10 20 20")
@@ -80,6 +79,14 @@ class Create_user:
 
         if not self.email_verification.es_correo_valido(email):
             messagebox.showerror("Error", "El formato del correo electrónico no es válido.")
+            return
+
+        # Convertir la fecha al formato YYYY-MM-DD
+        try:
+            fecha_nacimiento = datetime.strptime(datos_usuario['fecha_nacimiento'], '%d/%m/%Y').strftime('%Y-%m-%d')
+            datos_usuario['fecha_nacimiento'] = fecha_nacimiento
+        except ValueError:
+            messagebox.showerror("Error", "Formato de fecha de nacimiento no válido.")
             return
 
         try:

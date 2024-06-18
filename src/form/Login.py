@@ -36,7 +36,7 @@ class Login:
         style.configure('TLabel', font=('Arial', 12))
         style.configure('TEntry', font=('Arial', 12))
         style.configure('TButton', font=('Arial', 12), padding=10)
-        style.configure('TFrame', background='#f0f0f0')
+        style.configure('TFrame', background='#3A4F3F')
 
         # Crear marco principal
         main_frame = ttk.Frame(self.root, padding="10 10 20 20")
@@ -81,6 +81,7 @@ class Login:
         """
         Abre la ventana de registro de usuario.
         """
+        self.root.destroy()
         src.form.Create_user.Create_user()  # Abrir la ventana de registro
 
 
