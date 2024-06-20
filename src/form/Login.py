@@ -4,6 +4,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from src.model.SessionManager import SessionManager
 import src.form.Create_user
+import src.form.PanelGeneralForm
 
 
 class Login:
@@ -73,6 +74,7 @@ class Login:
             messagebox.showinfo("Éxito", "Inicio de sesión exitoso")  # Muestra un mensaje de éxito
             self.root.destroy()  # Cerrar la ventana de inicio de sesión
             # Realizar la acción que deseas, como abrir el siguiente menú, etc.
+            src.form.PanelGeneralForm.PanelGeneralForm()
         else:
             # Si el inicio de sesión falló, mostrar un mensaje de error
             messagebox.showerror("Error", mensaje)
