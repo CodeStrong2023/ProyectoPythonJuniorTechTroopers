@@ -3,6 +3,7 @@
 import mysql.connector
 from mysql.connector import Error
 from src.database.Connection import Connection
+from src.model.user import User
 from src.utils.encription import Cifrado  # Asegurándonos que la clase Cifrado esté en utils
 
 class Getinfo:
@@ -42,10 +43,31 @@ class Getinfo:
             cursor = self.conexion.cursor()
             cursor.execute(sql, (username,))
             resultSet = cursor.fetchone()
-            cursor.close()
 
             return resultSet is not None
 
         except Error as e:
             print(f"Error al verificar el usuario: {e}")
+            return False
+
+    def informacion_panel(self, username):
+        consulta = "SELECT username,email, nombre, apellido,saldo FROM Usuarios WHERE username=%s"
+        try:
+            cursor = self.conexion.cursor()
+
+            cursor.execute(consulta, (username,))
+            resultado = cursor.fetchone()
+            cursor.close()
+
+            usuario = User.BuilderUser.build()
+            usuario.set_username(resultado[0])
+            usuario.set_email(resultado[1])
+            usuario.set_nombre(resultado[2])
+            usuario.set_apellido(resultado[3])
+            usuario.set_saldo(resultado[4])
+
+            return usuario
+
+        except Error as e:
+            print(f"Error al validar las credenciales: {e}")
             return False
