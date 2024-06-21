@@ -1,4 +1,4 @@
-# src/database/InsertInfo_db.py
+# src/database/Inser_tInfo_db.py
 
 import mysql.connector
 from mysql.connector import Error

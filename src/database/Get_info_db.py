@@ -1,10 +1,11 @@
-# src/utils/Getinfo_db.py
+# src/utils/Get_info_db.py
 
 import mysql.connector
 from mysql.connector import Error
 from src.database.Connection_db import Connection
 from src.model.User import User
 from src.utils.encription import Cifrado  # Asegurándonos que la clase Cifrado esté en utils
+
 
 class Getinfo:
     def __init__(self, db_key='1'):
@@ -51,7 +52,7 @@ class Getinfo:
             return False
 
     def informacion_panel(self, username):
-        consulta = "SELECT username,email, nombre, apellido,saldo FROM Usuarios WHERE username=%s"
+        consulta = "SELECT usuario_id, username,email, nombre, apellido,saldo FROM Usuarios WHERE username=%s"
         try:
             cursor = self.conexion.cursor()
 
@@ -59,13 +60,25 @@ class Getinfo:
             resultado = cursor.fetchone()
             cursor.close()
 
-            usuario = User.BuilderUser.build()
-            usuario.set_username(resultado[0])
-            usuario.set_email(resultado[1])
-            usuario.set_nombre(resultado[2])
-            usuario.set_apellido(resultado[3])
-            usuario.set_saldo(resultado[4])
-
+            """
+                        usuario = User.BuilderUser.build()
+                        usuario.set_username(resultado[0])
+                        usuario.set_email(resultado[1])
+                        usuario.set_nombre(resultado[2])
+                        usuario.set_apellido(resultado[3])
+                        usuario.set_saldo(resultado[4])
+            """
+            # Y ahora esta asi
+            usuario = (
+                User.BuilderUser()
+                .set_usuario_id(resultado[0])
+                .set_username(resultado[1])
+                .set_email(resultado[2])
+                .set_nombre(resultado[3])
+                .set_apellido(resultado[4])
+                .set_saldo(resultado[5])
+                .build()
+            )
             return usuario
 
         except Error as e:

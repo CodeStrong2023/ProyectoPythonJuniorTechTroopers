@@ -3,8 +3,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from src.service.Session_manager_service import SessionManager
-import src.form.Create_user_form
-import src.form.Panel_general_form
+import src.form.Create_user_form as create_user
+import src.form.Panel_general_form as panel_general
 
 
 class Login:
@@ -15,7 +15,7 @@ class Login:
         session_manager (SessionManager): Objeto para gestionar la sesión.
     """
 
-    def __init__(self, db_key='1'):
+    def _init_(self, db_key='1'):
         """
         Constructor de la clase.
 
@@ -74,7 +74,9 @@ class Login:
             messagebox.showinfo("Éxito", "Inicio de sesión exitoso")  # Muestra un mensaje de éxito
             self.root.destroy()  # Cerrar la ventana de inicio de sesión
             # Realizar la acción que deseas, como abrir el siguiente menú, etc.
-            src.form.PanelGeneralForm.PanelGeneralForm()
+            panel_general.PanelGeneralForm(username=usuario_info['username'],
+                                           usuario_id = usuario_info['usuario_id']
+                                           )
         else:
             # Si el inicio de sesión falló, mostrar un mensaje de error
             messagebox.showerror("Error", mensaje)
@@ -84,8 +86,4 @@ class Login:
         Abre la ventana de registro de usuario.
         """
         self.root.destroy()
-        src.form.Create_user.Create_user()  # Abrir la ventana de registro
-
-
-if __name__ == "__main__":
-    login_app = Login(db_key='1')
+        create_user.Create_user()  # Abrir la ventana de registro

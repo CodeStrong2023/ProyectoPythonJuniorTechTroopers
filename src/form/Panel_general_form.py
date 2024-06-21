@@ -1,13 +1,21 @@
 import tkinter as tk
 from tkinter import ttk
+from src.database.Get_info_db import Getinfo
 
 class PanelGeneralForm:
-    def __init__(self, db_key='1'):
+    def _init_(self, username="", db_key='1'):
+        self.username = username
         self.crear_interfaz_panel()
 
     def crear_interfaz_panel(self):
+        if self.username == "":
+            print("No se ha ingresado un nombre de usuario")
+            return
+
+        user_info = Getinfo().informacion_panel(self.username)
+
         self.root = tk.Tk()
-        self.root.title('PANEL GENERAL')
+        self.root.tittle('PANEL GENERAL')
 
         # Configurar estilo
         style = ttk.Style()
@@ -25,8 +33,8 @@ class PanelGeneralForm:
         campos_textos = ["Nombre Usuario:", "Nombre:", "Apellido:", "Saldo:", "Email:"]
         for i, text in enumerate(campos_textos):
             ttk.Label(main_frame, text=text).grid(row=i, column=0, padx=10, pady=5)
-            # self.campos[text] = ttk.Entry(main_frame)
-            # self.campos[text].grid(row=i, column=1, padx=10, pady=5)
+            self.campos[text] = ttk.Entry(main_frame)
+            self.campos[text].grid(row=i, column=1, padx=10, pady=5)
 
         # Botones
         self.submit_button = ttk.Button(main_frame, text="Registrar Hospedajes", command=self.on_submit_click)
@@ -36,27 +44,24 @@ class PanelGeneralForm:
         self.submit_button = ttk.Button(main_frame, text="Mis Reservas", command=self.on_submit_click)
         self.submit_button.grid(row=7, column=1, pady=10)
 
+        self.muestra_panel(user_info)
+
         self.root.mainloop()
 
     def on_submit_click(self):
         # Aquí se define la acción a realizar cuando se haga clic en los botones
         print("Botón presionado")
 
-    def muestra_panel(self, usuario):
-        """
-        Actualiza los labels con el contenido de la base de datos.
-        'data' debe ser un diccionario con claves 'user_name', 'first_name', 'last_name', 'saldo', 'email'.
-        """
+    def muestra_panel(self, user_info):
         campos_textos = {
-            'label1': f"Nombre Usuario: {usuario.get('user_name', '')}",
-            'label2': f"Nombre: {usuario.get('nombre', '')}",
-            'label3': f"Apellido: {usuario.get('apellido', '')}",
-            'label4': f"Saldo: ${usuario.get('saldo', 0):,.2f}",
-            'label5': f"Email: {usuario.get('email', '')}",
+            "Nombre Usuario:": user_info.get_username(),
+            "Nombre:": user_info.get_nombre(),
+            "Apellido:": user_info.get_apellido(),
+            "Saldo:": f"${user_info.get_saldo():,.2f}",
+            "Email:": user_info.get_email(),
         }
-        #
-        # for key, text in labels_text.items():
-        #     if key in self.labels:
-        #         self.labels[key].config(text=text)
-if __name__ == "__main__":
-    form = PanelGeneralForm(db_key='1')
+
+
+         for key, value in campos_textos.items():
+             if key in self.campos:
+                 self.campos[key].insert(0, value)
