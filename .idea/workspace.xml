@@ -6,19 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.env-example" beforeDir="false" afterPath="$PROJECT_DIR$/.env-example" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Connection_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Getinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Getinfo_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/InsertInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/InsertInfo_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/Create_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Create_user_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/PanelGeneralForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Panel_general_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/testPanelGeneral.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/SessionManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Session_manager_service.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/location2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Get_info_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Get_info_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Create_user_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Create_user_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Login_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Panel_general_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Panel_general_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Stay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Stay.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +31,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 2
@@ -52,18 +48,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Users/maria/Documents/ProyectoPythonJuniorTechTroopers-test-CORRECCIONES",
+    "last_opened_file_path": "C:/Users/maria/proy py jtt/ProyectoPythonJuniorTechTroopers",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\service" />
       <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers" />
+      <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\service" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Login_form">
-    <configuration name="Getinfo_db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="Login_form (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -71,11 +67,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/database" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/form" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\database\Getinfo_db.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/form/Login_form.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +143,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="testPanelGeneral" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,11 +151,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/form" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/form/testPanelGeneral.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.Login_form (1)" />
         <item itemvalue="Python.Login_form" />
         <item itemvalue="Python.Panel_general_form" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.Getinfo_db" />
-        <item itemvalue="Python.testPanelGeneral" />
       </list>
     </recent_temporary>
   </component>
@@ -195,16 +191,5 @@
       <updated>1717028527452</updated>
     </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/form/Login_form.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

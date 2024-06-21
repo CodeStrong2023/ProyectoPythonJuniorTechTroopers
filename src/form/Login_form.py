@@ -15,7 +15,7 @@ class Login:
         session_manager (SessionManager): Objeto para gestionar la sesión.
     """
 
-    def _init_(self, db_key='1'):
+    def __init__(self, db_key='1'):
         """
         Constructor de la clase.
 

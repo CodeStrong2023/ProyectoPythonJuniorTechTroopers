@@ -1,9 +1,9 @@
 class Stay:
     stay_counter = 0
 
-    def __init__(self, stay_name, location, night_price, capacity, stay_type, image):
-        Stay.stay_counter += 1
-        self.id_stay = Stay.stay_counter
+    def __init__(self, id_stay, stay_name, location, night_price, capacity, stay_type, image):
+
+        self.id_stay = id_stay
         self._stay_name = stay_name
         self._location = location
         self._night_price = night_price
@@ -12,6 +12,8 @@ class Stay:
         self._image = image
 
     # Getters
+    def get_id_stay(self):
+        return self._id_stay
     def get_stay_name(self):
         return self._stay_name
 
@@ -31,6 +33,7 @@ class Stay:
         return self._image
 
     # Setters
+
     def set_stay_name(self, stay_name):
         self._stay_name = stay_name
 

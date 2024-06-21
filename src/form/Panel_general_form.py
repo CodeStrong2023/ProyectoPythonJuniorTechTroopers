@@ -3,8 +3,9 @@ from tkinter import ttk
 from src.database.Get_info_db import Getinfo
 
 class PanelGeneralForm:
-    def _init_(self, username="", db_key='1'):
+    def __init__(self, username="", usuario_id="", db_key='1'):
         self.username = username
+        self.usuario_id = usuario_id
         self.crear_interfaz_panel()
 
     def crear_interfaz_panel(self):
@@ -15,7 +16,7 @@ class PanelGeneralForm:
         user_info = Getinfo().informacion_panel(self.username)
 
         self.root = tk.Tk()
-        self.root.tittle('PANEL GENERAL')
+        self.root.title('PANEL GENERAL')
 
         # Configurar estilo
         style = ttk.Style()
@@ -52,16 +53,14 @@ class PanelGeneralForm:
         # Aquí se define la acción a realizar cuando se haga clic en los botones
         print("Botón presionado")
 
-    def muestra_panel(self, user_info):
+    def muestra_panel(self, username):
         campos_textos = {
-            "Nombre Usuario:": user_info.get_username(),
-            "Nombre:": user_info.get_nombre(),
-            "Apellido:": user_info.get_apellido(),
-            "Saldo:": f"${user_info.get_saldo():,.2f}",
-            "Email:": user_info.get_email(),
+            "Nombre Usuario:": username.get_username(),
+            "Nombre:": username.get_nombre(),
+            "Apellido:": username.get_apellido(),
+            "Saldo:": f"${username.get_saldo():,.2f}",
+            "Email:": username.get_email(),
         }
-
-
-         for key, value in campos_textos.items():
+        for key, value in campos_textos.items():
              if key in self.campos:
                  self.campos[key].insert(0, value)

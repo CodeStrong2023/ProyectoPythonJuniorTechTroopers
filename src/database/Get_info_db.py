@@ -8,8 +8,9 @@ from src.utils.encription import Cifrado  # Asegurándonos que la clase Cifrado 
 
 
 class Getinfo:
-    def __init__(self, db_key='1'):
+    def __init__(self, username="", db_key='1'):
         self.conexion = Connection(db_key).connect()
+        self.username=username
 
     def loguearse(self, username, password):
         sql = "SELECT usuario_id, username, saldo, password FROM Usuarios WHERE username = %s"
