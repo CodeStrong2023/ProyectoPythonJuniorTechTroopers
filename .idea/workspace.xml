@@ -5,10 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/InsertInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/InsertInfo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.env-example" beforeDir="false" afterPath="$PROJECT_DIR$/.env-example" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Connection_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Getinfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Getinfo_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/InsertInfo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/InsertInfo_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Create_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Create_user_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/PanelGeneralForm.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Panel_general_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/testPanelGeneral.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/SessionManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Session_manager_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/location2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/__init__.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +52,18 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Users/nelso/Desktop/ProyectoPythonJuniorTechTroopers",
+    "last_opened_file_path": "C:/Users/maria/Documents/ProyectoPythonJuniorTechTroopers-test-CORRECCIONES",
     "settings.editor.selected.configurable": "preferences.lookFeel"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.Login">
-    <configuration name="Getinfo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\service" />
+      <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.Login_form">
+    <configuration name="Getinfo_db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -59,7 +75,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/database/Getinfo.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\database\Getinfo_db.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -68,7 +84,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="Login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Login_form" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -80,7 +96,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/form/Login.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\form\Login_form.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -89,7 +105,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="PanelGeneralForm" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Panel_general_form" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ProyectoPythonJuniorTechTroopers" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -101,7 +117,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/form/PanelGeneralForm.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers\src\form\Panel_general_form.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -154,10 +170,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Login" />
-        <item itemvalue="Python.PanelGeneralForm" />
+        <item itemvalue="Python.Login_form" />
+        <item itemvalue="Python.Panel_general_form" />
         <item itemvalue="Python.__init__" />
-        <item itemvalue="Python.Getinfo" />
+        <item itemvalue="Python.Getinfo_db" />
         <item itemvalue="Python.testPanelGeneral" />
       </list>
     </recent_temporary>
@@ -184,9 +200,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/src/form/testPanelGeneral.py</url>
-          <line>44</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/form/Login_form.py</url>
+          <line>2</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

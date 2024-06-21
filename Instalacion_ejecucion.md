@@ -1,0 +1,4 @@
+- Instalar el entorno virtual "py -m venv venv"
+- Activar el entorno virtual "venv\Scripts\activate"
+- Instalar las dependencias "pip install -r requirements.txt"
+- Ejecutar el programa "py main.py"

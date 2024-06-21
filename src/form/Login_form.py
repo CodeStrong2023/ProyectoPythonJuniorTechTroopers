@@ -1,10 +1,10 @@
-# src/form/Login.py
+# src/form/Login_form.py
 
 import tkinter as tk
 from tkinter import ttk, messagebox
-from src.model.SessionManager import SessionManager
-import src.form.Create_user
-import src.form.PanelGeneralForm
+from src.service.Session_manager_service import SessionManager
+import src.form.Create_user_form
+import src.form.Panel_general_form
 
 
 class Login:

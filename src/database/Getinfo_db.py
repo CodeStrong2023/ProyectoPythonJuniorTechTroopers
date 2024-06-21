@@ -1,9 +1,9 @@
-# src/utils/Getinfo.py
+# src/utils/Getinfo_db.py
 
 import mysql.connector
 from mysql.connector import Error
-from src.database.Connection import Connection
-from src.model.user import User
+from src.database.Connection_db import Connection
+from src.model.User import User
 from src.utils.encription import Cifrado  # Asegurándonos que la clase Cifrado esté en utils
 
 class Getinfo:

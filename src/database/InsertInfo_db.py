@@ -1,8 +1,8 @@
-# src/database/InsertInfo.py
+# src/database/InsertInfo_db.py
 
 import mysql.connector
 from mysql.connector import Error
-from src.database.Connection import Connection
+from src.database.Connection_db import Connection
 
 
 class InsertInfo:
