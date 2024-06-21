@@ -5,7 +5,7 @@ import re
 import random
 import smtplib
 from email.message import EmailMessage
-from dotenv import load_dotenv
+
 
 class EmailVerification:
     """
@@ -22,7 +22,6 @@ class EmailVerification:
         """
         Constructor de la clase.
         """
-        load_dotenv()
         self.email = os.getenv('EMAIL')
         self.password = os.getenv('KEY')
         self.conexion = None

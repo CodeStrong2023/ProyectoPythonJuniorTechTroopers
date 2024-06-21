@@ -154,16 +154,7 @@ class User:
 
 
         def build(self):
-            return User(self._usuario_id, self._username, self._password, self._nombre, self._apellido, self._email, self._documento,
+            return User(self._usuario_id, self._username, self._password, self._nombre, self._apellido, self._email,
+                        self._documento,
                         self._fecha_nacimiento, self._edad, self._telefono, self._saldo, self._activo)
 
-"""
-if __name__ == '__main__':
-    usuario1 = User(1,"","","","","","",1,0)
-    print(usuario1.get_user_name())
-
-
-    # ----------------------------------
-    usuario2 = User.BuilderUser()
-    print(usuario2._username)
-"""

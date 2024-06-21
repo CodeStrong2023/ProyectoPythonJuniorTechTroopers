@@ -1,4 +1,4 @@
-from Principal.Stay import Stay
+from Stay import Stay
 
 
 class StayBuilder:
