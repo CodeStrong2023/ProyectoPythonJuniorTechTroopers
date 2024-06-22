@@ -55,3 +55,24 @@ class InsertInfo:
             print(f"Error al insertar usuario: {e}")
             self.conexion.rollback()
 
+    def insertar_hospedaje(self, datos_hospedaje):
+        sql = """
+           INSERT INTO DB_STAYS.Hosting (owner_id, name_hosting, address, location_id, capacity, daily_cost)
+           VALUES (%s, %s, %s, %s, %s, %s)
+           """
+        try:
+            cursor = self.conexion.cursor()
+            cursor.execute(sql, (
+                datos_hospedaje['owner_id'],
+                datos_hospedaje['name_hosting'],
+                datos_hospedaje['address'],
+                datos_hospedaje['location_id'],
+                datos_hospedaje['capacity'],
+                datos_hospedaje['daily_cost'],
+            ))
+            self.conexion.commit()
+            cursor.close()
+            print("Hospedaje insertado correctamente.")
+        except Error as e:
+            print(f"Error al insertar hospedaje: {e}")
+            self.conexion.rollback()

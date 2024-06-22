@@ -93,21 +93,6 @@ class Getinfo:
             print(f"Error al obtener las provincias: {e}")
             return []
 
-    def obtener_provincias(self):
-        consulta = "SELECT provincia_id, nombre FROM DB_STAYS.Provincias"
-        try:
-            with self.conexion.cursor() as cursor:
-                cursor.execute(consulta)
-                resultados = cursor.fetchall()
-
-            # Convertir resultados a una lista de diccionarios
-            provincias = [{'provincia_id': row[0], 'nombre': row[1]} for row in resultados]
-            return provincias
-
-        except Error as e:
-            print(f"Error al obtener las provincias: {e}")
-            return []
-
     def obtener_departamentos(self, provincia_id):
         consulta = "SELECT departamento_id, nombre FROM DB_STAYS.Departamentos WHERE provincia_id = %s"
         try:
@@ -138,4 +123,18 @@ class Getinfo:
             print(f"Error al obtener las localidades: {e}")
             return []
 
-   
+    from mysql.connector import Error
+
+    def obtener_id_localidad(self, nombre_localidad):
+        consulta = "SELECT localidad_id FROM DB_STAYS.Localidades WHERE nombre = %s"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (nombre_localidad,))
+                resultado = cursor.fetchone()
+                if resultado:
+                    return resultado[0]  # Devuelve solo el ID de la localidad
+                else:
+                    return None  # Si no se encuentra la localidad con el nombre dado
+        except Error as e:
+            print(f"Error al obtener el ID de la localidad: {e}")
+            return None

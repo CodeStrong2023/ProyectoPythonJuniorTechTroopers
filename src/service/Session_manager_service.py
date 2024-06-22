@@ -1,6 +1,6 @@
 # src/model/Session_manager_service.py
 
-from src.database.Inser_tInfo_db import InsertInfo
+from src.database.Insert_info_db import InsertInfo
 from src.utils.encription import Cifrado
 from src.database.Get_info_db import Getinfo
 
