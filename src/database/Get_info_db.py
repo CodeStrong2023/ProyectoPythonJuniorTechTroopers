@@ -77,3 +77,65 @@ class Getinfo:
         except Error as e:
             print(f"Error al validar las credenciales: {e}")
             return False
+
+    def obtener_provincias(self):
+        consulta = "SELECT provincia_id, nombre FROM DB_STAYS.Provincias"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta)
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            provincias = [{'provincia_id': row[0], 'nombre': row[1]} for row in resultados]
+            return provincias
+
+        except Error as e:
+            print(f"Error al obtener las provincias: {e}")
+            return []
+
+    def obtener_provincias(self):
+        consulta = "SELECT provincia_id, nombre FROM DB_STAYS.Provincias"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta)
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            provincias = [{'provincia_id': row[0], 'nombre': row[1]} for row in resultados]
+            return provincias
+
+        except Error as e:
+            print(f"Error al obtener las provincias: {e}")
+            return []
+
+    def obtener_departamentos(self, provincia_id):
+        consulta = "SELECT departamento_id, nombre FROM DB_STAYS.Departamentos WHERE provincia_id = %s"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (provincia_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            departamentos = [{'departamento_id': row[0], 'nombre': row[1]} for row in resultados]
+            return departamentos
+
+        except Error as e:
+            print(f"Error al obtener los departamentos: {e}")
+            return []
+
+    def obtener_localidades(self, departamento_id):
+        consulta = "SELECT localidad_id, nombre FROM DB_STAYS.Localidades WHERE departamento_id = %s"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (departamento_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            localidades = [{'localidad_id': row[0], 'nombre': row[1]} for row in resultados]
+            return localidades
+
+        except Error as e:
+            print(f"Error al obtener las localidades: {e}")
+            return []
+
+   
