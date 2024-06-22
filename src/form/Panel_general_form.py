@@ -1,6 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from src.database.Get_info_db import Getinfo
+from src.form.Flitro_hospedaje import filtrame
+
+
 
 class PanelGeneralForm:
     def __init__(self, username="", user_id="", db_key='1'):
@@ -12,9 +15,7 @@ class PanelGeneralForm:
         if self.username == "":
             print("No se ha ingresado un nombre de usuario")
             return
-
         user_info = Getinfo().informacion_panel(self.username)
-
         self.root = tk.Tk()
         self.root.title('PANEL GENERAL')
 
@@ -38,9 +39,9 @@ class PanelGeneralForm:
             self.campos[text].grid(row=i, column=1, padx=10, pady=5)
 
         # Botones
-        self.submit_button = ttk.Button(main_frame, text="Registrar Hospedajes", command=self.on_submit_click)
+        self.submit_button = ttk.Button(main_frame, text="Registrar Hospedajes", command=self.on_submit_click())
         self.submit_button.grid(row=2, column=4, pady=10)
-        self.submit_button = ttk.Button(main_frame, text="Alquilar Hospedaje", command=self.on_submit_click)
+        self.submit_button = ttk.Button(main_frame, text="Alquilar Hospedaje", command=self.filtro)
         self.submit_button.grid(row=3, column=4, pady=10)
         self.submit_button = ttk.Button(main_frame, text="Mis Reservas", command=self.on_submit_click)
         self.submit_button.grid(row=7, column=1, pady=10)
@@ -53,6 +54,18 @@ class PanelGeneralForm:
         # Aquí se define la acción a realizar cuando se haga clic en los botones
         print("Botón presionado")
 
+    def filtro(self):
+        # Aquí se define la acción a realizar cuando se haga clic en los botones
+        print("Botón Filtro")
+        self.root.destroy()
+        filtrame(username=self.username, user_id=self.user_id)
+
+    def administrar(self):
+        # Acción a realizar cuando se haga clic en el botón "Administrar"
+        print("Botón 'Administrar' presionado")
+        self.new_window.destroy()
+        # Aquí puedes agregar la lógica para la funcionalidad de "Administrar"
+
     def muestra_panel(self, username):
         campos_textos = {
             "Nombre Usuario:": username.get_username(),
@@ -62,5 +75,5 @@ class PanelGeneralForm:
             "Email:": username.get_email(),
         }
         for key, value in campos_textos.items():
-             if key in self.campos:
-                 self.campos[key].insert(0, value)
+            if key in self.campos:
+                self.campos[key].insert(0, value)
