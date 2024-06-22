@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/Get_info_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Get_info_db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/Create_user_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Create_user_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/Login_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/form/Panel_general_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Panel_general_form.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Stay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Stay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,15 +39,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "test",
-    "last_opened_file_path": "C:/Users/maria/proy py jtt/ProyectoPythonJuniorTechTroopers",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/maria/proy py jtt/ProyectoPythonJuniorTechTroopers&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\maria\proy py jtt\ProyectoPythonJuniorTechTroopers" />

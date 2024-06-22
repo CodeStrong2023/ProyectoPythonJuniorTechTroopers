@@ -1,20 +1,20 @@
 class User:
-    def __init__(self, usuario_id, username, password, nombre, apellido, email, documento, fecha_nacimiento, edad, telefono, saldo, activo):
-        self.usuario_id = usuario_id
+    def __init__(self, user_id, username, password, firstname , lastname, email, birthdate, age, phone, money, active):
+        self._user_id = user_id
         self._username = username
         self._password = password
-        self._nombre = nombre
-        self._apellido = apellido
+        self._firstname = firstname
+        self._lastname = lastname
         self._email = email
-        self._documento = documento
-        self._fecha_nacimiento = fecha_nacimiento
-        self._edad = edad
-        self._telefono = telefono
-        self._saldo = saldo
-        self._activo = activo
+        self._birthdate = birthdate
+        self._age = age
+        self._phone = phone
+        self._money = money
+        self._active = active
     # Getters
-    def get_usuario_id(self):
-        return self._usuario_id
+
+    def get_user_id(self):
+        return self._user_id
 
     def get_username(self):
         return self._username
@@ -22,32 +22,29 @@ class User:
     def get_password(self):
         return self._password
 
-    def get_nombre(self):
-        return self._nombre
+    def get_firstname(self):
+        return self._firstname
 
-    def get_apellido(self):
-        return self._apellido
+    def get_lastname(self):
+        return self._lastname
 
     def get_email(self):
         return self._email
 
-    def get_documento(self):
-        return self._documento
+    def get_birthdate(self):
+        return self._birthdate
 
-    def get_fecha_nacimiento(self):
-        return self._fecha_nacimiento
+    def get_age(self):
+        return self._age
 
-    def get_edad(self):
-        return self._edad
+    def get_phone(self):
+        return self._phone
 
-    def get_telefono(self):
-        return self._telefono
-
-    def get_saldo(self):
-        return self._saldo
+    def get_money(self):
+        return self._money
 
     def get_activo(self):
-        return self._activo
+        return self._active
 
     # Setters
     def set_username(self, username):
@@ -56,32 +53,29 @@ class User:
     def set_password(self, password):
         self._password = password
 
-    def set_nombre(self, nombre):
-        self._nombre = nombre
+    def set_firstname(self, firstname):
+        self._firstname = firstname
 
-    def set_apellido(self, apellido):
-        self._apellido = apellido
+    def set_lastname(self, lastname):
+        self._lastname = lastname
 
     def set_email(self, email):
         self._email = email
 
-    def set_documento(self, documento):
-        self._documento = documento
+    def set_birthdate(self, birthdate):
+        self._birthdate = birthdate
 
-    def set_fecha_nacimiento(self, fecha_nacimiento):
-        self._fecha_nacimiento = fecha_nacimiento
+    def set_age(self, age):
+        self._age = age
 
-    def set_edad(self, edad):
-        self._edad = edad
+    def set_phone(self, phone):
+        self._phone = phone
 
-    def set_telefono(self, telefono):
-        self._telefono = telefono
+    def set_money(self, money):
+        self._money = money
 
-    def set_saldo(self, saldo):
-        self._saldo = saldo
-
-    def set_activo(self, activo):
-        self._activo = activo
+    def set_active(self, active):
+        self._active = active
 
     # Para aplicar el método Builder en la clase Start,
     # primero necesitamos entender que el patrón Builder
@@ -90,18 +84,17 @@ class User:
     # parámetros para su construcción y estos parámetros no son siempre necesarios.
     class BuilderUser:
         def __init__(self):
-            self._usuario_id = None
+            self._user_id = None
             self._username = None
             self._password = None
-            self._nombre = None
-            self._apellido = None
+            self._firstname = None
+            self._lastname = None
             self._email = None
-            self._documento = None
-            self._fecha_nacimiento = None
-            self._edad = None
-            self._telefono = None
-            self._saldo = None
-            self._activo = None
+            self._birthdate = None
+            self._age = None
+            self._phone = None
+            self._money = None
+            self._active = None
 
         def set_usuario_id(self, usuario_id):
             self._usuario_id = usuario_id
@@ -115,46 +108,41 @@ class User:
             self._password = password
             return self
 
-        def set_nombre(self, nombre):
-            self._nombre = nombre
+        def set_firstname(self, firstname):
+            self._firstname = firstname
             return self
 
-        def set_apellido(self, apellido):
-            self._apellido = apellido
+        def set_lastname(self, lastname):
+            self._lastname = lastname
             return self
 
         def set_email(self, email):
             self._email = email
             return self
 
-        def set_documento(self, documento):
-            self._documento = documento
+        def set_birthdate(self, birthdate):
+            self._birthdate = birthdate
             return self
 
-        def set_fecha_nacimiento(self, fecha_nacimiento):
-            self._fecha_nacimiento = fecha_nacimiento
+        def set_age(self, age):
+            self._age = age
             return self
 
-        def set_edad(self, edad):
-            self._edad = edad
+        def set_phone(self, phone):
+            self._phone = phone
             return self
 
-        def set_telefono(self, telefono):
-            self._telefono = telefono
+        def set_money(self, money):
+            self._money = money
             return self
 
-        def set_saldo(self, saldo):
-            self._saldo = saldo
-            return self
-
-        def set_activo(self, activo):
-            self._activo = activo
+        def set_active(self, active):
+            self._active = active
             return self
 
 
 
         def build(self):
-            return User(self._usuario_id, self._username, self._password, self._nombre, self._apellido, self._email,
-                        self._documento,
-                        self._fecha_nacimiento, self._edad, self._telefono, self._saldo, self._activo)
+            return User(self._usuario_id, self._username, self._password, self._firstname, self._lastname, self._email,
+                        self._birthdate, self._age, self._phone, self._money, self._active)
 
