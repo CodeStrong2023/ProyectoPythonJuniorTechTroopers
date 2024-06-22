@@ -4,6 +4,7 @@ from tkcalendar import DateEntry
 from src.service.Session_manager_service import SessionManager
 from src.utils.validation import EmailVerification
 from datetime import datetime, date
+import re
 
 
 class Create_user:
@@ -17,6 +18,7 @@ class Create_user:
         root (tk.Tk): Ventana principal de la aplicación.
         verificacion_window (tk.Toplevel): Ventana secundaria para la verificación del correo.
         codigo_entrada (ttk.Entry): Campo de entrada para el código de verificación.
+        intentos_codigo (int): Contador de intentos de verificación del código.
     """
 
     def __init__(self):
@@ -26,6 +28,7 @@ class Create_user:
         # Inicializa los objetos de sesión y verificación de correo
         self.session_manager = SessionManager()
         self.email_verification = EmailVerification()
+        self.intentos_codigo = 0  # Inicializa el contador de intentos de código
         # Crea la interfaz gráfica de registro
         self.crear_interfaz_registro()
 
@@ -47,14 +50,23 @@ class Create_user:
         main_frame = ttk.Frame(self.root, padding="10 10 20 20")
         main_frame.grid(row=0, column=0, sticky=(tk.W, tk.E, tk.N, tk.S))
 
-        # Campos de entrada
-        campos = ["username", "password", "confirm_password", "firstname", "lastname", "birthdate", "age", "phone",
-                  "email"]
+        # Campos de entrada con traducciones
+        campos = {
+            "nombre de usuario": "username",
+            "contraseña": "password",
+            "confirmar contraseña": "confirm_password",
+            "nombre": "firstname",
+            "apellido": "lastname",
+            "fecha de nacimiento": "birthdate",
+            "edad": "age",
+            "teléfono": "phone",
+            "email": "email"
+        }
         self.entradas = {}
 
-        for idx, campo in enumerate(campos):
+        for idx, (etiqueta, campo) in enumerate(campos.items()):
             # Crear etiquetas y campos de entrada
-            ttk.Label(main_frame, text=campo.capitalize().replace("_", " ")).grid(row=idx, column=0, padx=10, pady=5)
+            ttk.Label(main_frame, text=etiqueta.capitalize()).grid(row=idx, column=0, padx=10, pady=5)
             if campo == "birthdate":
                 entry = DateEntry(main_frame, date_pattern='dd/mm/yyyy', locale='es_ES', width=12)
                 entry.bind("<<DateEntrySelected>>", self.calcular_edad)
@@ -62,6 +74,8 @@ class Create_user:
                 entry = ttk.Entry(main_frame, show="*" if "password" in campo else "")
                 if campo == "age":
                     entry.config(state='readonly')
+                if campo == "email":
+                    entry.insert(0, "example@correo.com")
             entry.grid(row=idx, column=1, padx=10, pady=5)
             self.entradas[campo] = entry
 
@@ -80,8 +94,7 @@ class Create_user:
         try:
             birthdate = datetime.strptime(birthdate_str, '%d/%m/%Y').date()
             hoy = date.today()
-            edad = hoy.year - birthdate.year - (
-                        (hoy.month, hoy.day) < (birthdate.month, birthdate.day))
+            edad = hoy.year - birthdate.year - ((hoy.month, hoy.day) < (birthdate.month, birthdate.day))
             self.entradas['age'].config(state='normal')
             self.entradas['age'].delete(0, tk.END)
             self.entradas['age'].insert(0, str(edad))
@@ -92,23 +105,43 @@ class Create_user:
             self.entradas['age'].insert(0, "")
             self.entradas['age'].config(state='readonly')
 
+    def validar_campos(self, datos_usuario):
+        """
+        Valida los campos del formulario.
+
+        Args:
+            datos_usuario (dict): Datos del usuario a registrar.
+
+        Returns:
+            bool: True si los campos son válidos, False en caso contrario.
+        """
+        for campo, valor in datos_usuario.items():
+            if not valor.strip():
+                messagebox.showerror("Error", f"El campo '{campo}' no puede estar vacío.")
+                return False
+
+        if not re.match(r"^\d{10,14}$", datos_usuario["phone"]):
+            messagebox.showerror("Error", "El formato del teléfono es incorrecto. Debe contener entre 10 y 14 dígitos.")
+            return False
+
+        if not re.match(r"^[^@]+@[^@]+\.[^@]+$", datos_usuario["email"]):
+            messagebox.showerror("Error", "El formato del correo electrónico es incorrecto. Debe contener '@' y '.com'.")
+            return False
+
+        return True
+
     def registrar_usuario(self):
         """
         Registra un nuevo usuario.
         """
-        # Recopilar datos del formulario
-        datos_usuario = {campo: self.entradas[campo].get() for campo in self.entradas}
+        # Recopilar datos del formulario y convertir a mayúsculas
+        datos_usuario = {campo: self.entradas[campo].get().upper() for campo in self.entradas}
         email = datos_usuario.get("email")
         password = datos_usuario.get("password")
         confirm_password = datos_usuario.get("confirm_password")
 
-        # Validar el correo electrónico
-        if not email:
-            messagebox.showerror("Error", "El campo de correo electrónico es obligatorio.")
-            return
-
-        if not self.email_verification.es_correo_valido(email):
-            messagebox.showerror("Error", "El formato del correo electrónico no es válido.")
+        # Validar campos
+        if not self.validar_campos(datos_usuario):
             return
 
         # Validar que las contraseñas coincidan
@@ -125,8 +158,7 @@ class Create_user:
             return
 
         hoy = date.today()
-        age = hoy.year - birthdate.year - (
-                    (hoy.month, hoy.day) < (birthdate.month, birthdate.day))
+        age = hoy.year - birthdate.year - ((hoy.month, hoy.day) < (birthdate.month, birthdate.day))
 
         if age < 18:
             messagebox.showerror("Error", "Debes ser mayor de 18 años para registrarte.")
@@ -171,6 +203,13 @@ class Create_user:
         Args:
             datos_usuario (dict): Datos del usuario a registrar.
         """
+        self.intentos_codigo += 1  # Incrementa el contador de intentos
+        if self.intentos_codigo > 3:
+            messagebox.showerror("Error", "Número máximo de intentos alcanzado.")
+            self.verificacion_window.destroy()
+            self.volver_login()
+            return
+
         codigo_ingresado = self.codigo_entrada.get()
 
         # Verificar el código ingresado
