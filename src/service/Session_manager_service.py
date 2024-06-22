@@ -48,8 +48,8 @@ class SessionManager:
             datos_usuario (dict): Datos del usuario a registrar.
         """
         datos_usuario['password'] = Cifrado.hash_password(datos_usuario['password'])
-        datos_usuario['saldo'] = 0  # El saldo inicial es 0
-        datos_usuario['activo'] = 1  # Usuario activo
+        datos_usuario['money'] = 0  # El saldo inicial es 0
+        datos_usuario['active'] = 1  # Usuario activo
         self.insert_info.insertar_usuario(datos_usuario)
 
     def salir_aplicacion(self, root):

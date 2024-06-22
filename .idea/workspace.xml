@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Stay.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Stay.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/Session_manager_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Session_manager_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/models/Test_User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/models/Test_User.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
