@@ -116,10 +116,11 @@ class cargarHospedaje:
 
 
         try:
-            localidad_id = self.localidades_ids.get(localidad)
+            localidad_id = int(self.localidades_ids.get(localidad))
+            provincia_id = int(self.provincias_ids.get(provincia))
+            departamento_id = int(self.departamentos_ids.get(departamento))
             capacidad = int(capacidad)
             precio = int(precio)
-            localidad_id = int(localidad_id)
         except ValueError:
             messagebox.showerror("Error", "Capacidad, precio y localidad deben ser números válidos.")
             return
@@ -130,7 +131,9 @@ class cargarHospedaje:
             'address': direccion,
             'location_id': localidad_id,
             'capacity': capacidad,
-            'daily_cost': precio
+            'daily_cost': precio,
+            'depart_id': departamento_id,
+            'province_id': provincia_id
         }
 
         try:
