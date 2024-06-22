@@ -74,8 +74,9 @@ class Login:
             messagebox.showinfo("Éxito", "Inicio de sesión exitoso")  # Muestra un mensaje de éxito
             self.root.destroy()  # Cerrar la ventana de inicio de sesión
             # Realizar la acción que deseas, como abrir el siguiente menú, etc.
+            print(usuario_info)
             panel_general.PanelGeneralForm(username=usuario_info['username'],
-                                           usuario_id=usuario_info['user_id']
+                                           user_id=usuario_info['user_id']
                                            )
         else:
             # Si el inicio de sesión falló, mostrar un mensaje de error
