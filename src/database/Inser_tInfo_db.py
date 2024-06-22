@@ -32,23 +32,22 @@ class InsertInfo:
             pymysql.Error: Si ocurre un error durante la inserción de datos.
         """
         sql = """
-        INSERT INTO Usuarios (username, password, nombre, apellido, email, documento, fecha_nacimiento, edad, telefono, saldo, activo)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO Usuarios (username, password, firstname, lastname, email, birthdate, age, phone, money, active)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         try:
             cursor = self.conexion.cursor()
             cursor.execute(sql, (
                 datos_usuario['username'],
                 datos_usuario['password'],
-                datos_usuario['nombre'],
-                datos_usuario['apellido'],
+                datos_usuario['firstname'],
+                datos_usuario['lastname'],
                 datos_usuario['email'],
-                datos_usuario['documento'],
-                datos_usuario['fecha_nacimiento'],
-                datos_usuario['edad'],
-                datos_usuario['telefono'],
-                datos_usuario['saldo'],
-                datos_usuario['activo']
+                datos_usuario['birthdate'],
+                datos_usuario['age'],
+                datos_usuario['phone'],
+                datos_usuario['money'],
+                datos_usuario['active']
             ))
             self.conexion.commit()
             cursor.close()

@@ -8,8 +8,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/src/service/Session_manager_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/Session_manager_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/tests/models/Test_User.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/models/Test_User.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/database/Get_info_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Get_info_db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/Inser_tInfo_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Inser_tInfo_db.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

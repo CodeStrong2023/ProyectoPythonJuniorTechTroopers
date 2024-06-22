@@ -13,7 +13,7 @@ class Getinfo:
         self.username=username
 
     def loguearse(self, username, password):
-        sql = "SELECT usuario_id, username, saldo, password FROM Usuarios WHERE username = %s"
+        sql = "SELECT user_id, username, money, password FROM Usuarios WHERE username = %s"
         try:
             cursor = self.conexion.cursor()
             cursor.execute(sql, (username,))
@@ -27,9 +27,9 @@ class Getinfo:
 
             if Cifrado.check_password(password, hashed_password_db):
                 user = {
-                    'usuario_id': resultSet[0],
+                    'user_id': resultSet[0],
                     'username': resultSet[1],
-                    'saldo': resultSet[2]
+                    'money': resultSet[2]
                 }
                 return user, "Inicio de sesión exitoso"
             else:
@@ -53,7 +53,7 @@ class Getinfo:
             return False
 
     def informacion_panel(self, username):
-        consulta = "SELECT usuario_id, username,email, nombre, apellido,saldo FROM Usuarios WHERE username=%s"
+        consulta = "SELECT user_id, username,email, firstname, lastname, money FROM Usuarios WHERE username=%s"
         try:
             cursor = self.conexion.cursor()
 
@@ -61,23 +61,15 @@ class Getinfo:
             resultado = cursor.fetchone()
             cursor.close()
 
-            """
-                        usuario = User.BuilderUser.build()
-                        usuario.set_username(resultado[0])
-                        usuario.set_email(resultado[1])
-                        usuario.set_nombre(resultado[2])
-                        usuario.set_apellido(resultado[3])
-                        usuario.set_saldo(resultado[4])
-            """
             # Y ahora esta asi
             usuario = (
                 User.BuilderUser()
                 .set_usuario_id(resultado[0])
                 .set_username(resultado[1])
                 .set_email(resultado[2])
-                .set_nombre(resultado[3])
-                .set_apellido(resultado[4])
-                .set_saldo(resultado[5])
+                .set_firstname(resultado[3])
+                .set_lastname(resultado[4])
+                .set_money(resultado[5])
                 .build()
             )
             return usuario
