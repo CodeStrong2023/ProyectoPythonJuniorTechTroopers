@@ -75,7 +75,7 @@ class Login:
             self.root.destroy()  # Cerrar la ventana de inicio de sesión
             # Realizar la acción que deseas, como abrir el siguiente menú, etc.
             panel_general.PanelGeneralForm(username=usuario_info['username'],
-                                           usuario_id = usuario_info['usuario_id']
+                                           usuario_id=usuario_info['user_id']
                                            )
         else:
             # Si el inicio de sesión falló, mostrar un mensaje de error

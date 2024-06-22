@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="819a65aa-f275-41b2-8cb9-27c672ead630" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProyectoPythonJuniorTechTroopers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -14,6 +15,11 @@
 =======
       <change beforePath="$PROJECT_DIR$/src/database/Get_info_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Get_info_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/Inser_tInfo_db.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/Inser_tInfo_db.py" afterDir="false" />
+>>>>>>> Stashed changes
+=======
+      <change beforePath="$PROJECT_DIR$/src/form/Create_user_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Create_user_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Login_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Login_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/form/Panel_general_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/form/Panel_general_form.py" afterDir="false" />
 >>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />

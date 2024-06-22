@@ -3,9 +3,9 @@ from tkinter import ttk
 from src.database.Get_info_db import Getinfo
 
 class PanelGeneralForm:
-    def __init__(self, username="", usuario_id="", db_key='1'):
+    def __init__(self, username="", user_id="", db_key='1'):
         self.username = username
-        self.usuario_id = usuario_id
+        self.user_id = user_id
         self.crear_interfaz_panel()
 
     def crear_interfaz_panel(self):
@@ -56,9 +56,9 @@ class PanelGeneralForm:
     def muestra_panel(self, username):
         campos_textos = {
             "Nombre Usuario:": username.get_username(),
-            "Nombre:": username.get_nombre(),
-            "Apellido:": username.get_apellido(),
-            "Saldo:": f"${username.get_saldo():,.2f}",
+            "Nombre:": username.get_firstname(),
+            "Apellido:": username.get_lastname(),
+            "Saldo:": f"${username.get_money():,.2f}",
             "Email:": username.get_email(),
         }
         for key, value in campos_textos.items():
