@@ -138,3 +138,4 @@ class Getinfo:
         except Error as e:
             print(f"Error al obtener el ID de la localidad: {e}")
             return None
+

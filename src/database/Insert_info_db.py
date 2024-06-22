@@ -57,8 +57,8 @@ class InsertInfo:
 
     def insertar_hospedaje(self, datos_hospedaje):
         sql = """
-           INSERT INTO DB_STAYS.Hosting (owner_id, name_hosting, address, location_id, capacity, daily_cost)
-           VALUES (%s, %s, %s, %s, %s, %s)
+           INSERT INTO DB_STAYS.Hosting (owner_id, name_hosting, address, location_id, depart_id, province_id, capacity, daily_cost)
+           VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
            """
         try:
             cursor = self.conexion.cursor()
@@ -67,6 +67,8 @@ class InsertInfo:
                 datos_hospedaje['name_hosting'],
                 datos_hospedaje['address'],
                 datos_hospedaje['location_id'],
+                datos_hospedaje['depart_id'],
+                datos_hospedaje['province_id'],
                 datos_hospedaje['capacity'],
                 datos_hospedaje['daily_cost'],
             ))

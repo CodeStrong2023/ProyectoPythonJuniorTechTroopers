@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 from src.database.Get_info_db import Getinfo
+from src.form.Administrar_Hospedaje import administrarHospedaje
 from src.form.Cargar_Hospedaje import cargarHospedaje
+from src.form.Flitro_hospedaje import filtrame
 
 class PanelGeneralForm:
     def __init__(self, username="", user_id="", db_key='1'):
@@ -43,7 +45,7 @@ class PanelGeneralForm:
         # Botones
         self.submit_button = ttk.Button(main_frame, text="Registrar Hospedajes", command=self.registrar_hospedajes)
         self.submit_button.grid(row=2, column=4, pady=10)
-        self.submit_button = ttk.Button(main_frame, text="Alquilar Hospedaje", command=self.on_submit_click)
+        self.submit_button = ttk.Button(main_frame, text="Alquilar Hospedaje", command=self.filtro)
         self.submit_button.grid(row=3, column=4, pady=10)
         self.submit_button = ttk.Button(main_frame, text="Mis Reservas", command=self.on_submit_click)
         self.submit_button.grid(row=7, column=1, pady=10)
@@ -82,8 +84,14 @@ class PanelGeneralForm:
         # Acción a realizar cuando se haga clic en el botón "Administrar"
         print("Botón 'Administrar' presionado")
         self.new_window.destroy()
+        administrarHospedaje(username=self.username, user_id=self.user_id)
         # Aquí puedes agregar la lógica para la funcionalidad de "Administrar"
 
+    def filtro(self):
+        # Aquí se define la acción a realizar cuando se haga clic en los botones
+        print("Botón Filtro")
+        self.root.destroy()
+        filtrame(username=self.username, user_id=self.user_id)
     def on_submit_click(self):
         # Aquí se define la acción a realizar cuando se haga clic en los botones
         print("Botón presionado")
