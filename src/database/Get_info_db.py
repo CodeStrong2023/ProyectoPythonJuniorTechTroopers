@@ -10,7 +10,7 @@ from src.utils.encription import Cifrado  # Asegurándonos que la clase Cifrado 
 class Getinfo:
     def __init__(self, username="", db_key='1'):
         self.conexion = Connection(db_key).connect()
-        self.username=username
+        self.username = username
 
     def loguearse(self, username, password):
         sql = "SELECT user_id, username, money, password FROM Usuarios WHERE username = %s"
@@ -138,4 +138,40 @@ class Getinfo:
             print(f"Error al obtener las localidades: {e}")
             return []
 
-   
+    def obtener_hospedajes_disponibles(self, province_id=None, departament_id=None, location_id=None,
+                                       start_date=None, end_date=None):
+        consulta = """
+            SELECT *
+            FROM DB_STAYS.Hosting AS _hosting 
+            WHERE 
+                (
+                    _hosting.province_id = %s
+                    OR _hosting.depart_id = %s
+                    OR _hosting.location_id = %s
+                )
+                AND _hosting.state = 1
+                AND (
+                    SELECT 
+                        COUNT(*)
+                    FROM DB_STAYS.Rental_Register AS _rental 
+                    WHERE _rental.hosting_id = _hosting.hosting_id
+                        AND (
+                            (_rental.start_date <= %s AND _rental.end_date >= %s)
+                )
+
+                )=0
+            ;
+        """
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (province_id, departament_id, location_id, end_date, start_date))
+                resultado = cursor.fetchall()
+
+                orden = ''
+
+
+
+
+        except Error as e:
+            print(f"Error al obtener los hospedajes disponibles: {e}")
+            return []

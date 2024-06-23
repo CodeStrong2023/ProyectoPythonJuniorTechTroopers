@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from tkcalendar import DateEntry
+from src.database.Get_info_db import Getinfo
+
 
 class filtrame:
     def __init__(self, username="", user_id="", db_key='1'):
@@ -8,6 +10,12 @@ class filtrame:
         self.user_id = user_id
         print(f'Username {username}, id={user_id}')
         self.interfaz_hospedaje()
+
+        self.province_id = None
+        self.departament_id = None
+        self.location_id = None
+        self.start_date = None
+        self.end_date = None
 
     def interfaz_hospedaje(self):
         # Lista de labels para los comboboxes
@@ -22,36 +30,23 @@ class filtrame:
         titulo = tk.Label(self.root, text="Complete los campos para una buena estadía", font=("Helvetica", 16))
         titulo.grid(row=0, column=0, columnspan=4, padx=10, pady=20)
 
-        # Lista de opciones para los comboboxes
-        opciones = ["A", "B", "C", "D", "E"]
-
         # Crear y colocar los comboboxes y sus labels en la parte izquierda
+        label_provincias = tk.Label(self.root, text="Provincias")
+        label_provincias.grid(row=1, column=0, padx=10, pady=10, sticky='w')
+        self.provincia_combobox = ttk.Combobox(self.root, state="readonly")
+        self.provincia_combobox.grid(row=1, column=1, padx=10, pady=10, sticky='w')
+        self.provincia_combobox.bind("<<ComboboxSelected>>", self.on_provincia_selected)
 
-        # label = tk.Label(self.root, text="Provincias")
-        # label.grid(row= 1, column=0, padx=10, pady=10, sticky='w')
-        # combobox = ttk.Combobox(self.root, state="readonly")
-        # combobox.grid(row=1, column=1, padx=10, pady=10, sticky='w')
-        # combobox.bind("<<ComboxSelected>>",self.Provincias())
-        #
-        # label = tk.Label(self.root, text="Departamentos")
-        # label.grid(row=2, column=0, padx=10, pady=10, sticky='w')
-        # combobox = ttk.Combobox(self.root, state="readonly")
-        # combobox.grid(row=2, column=1, padx=10, pady=10, sticky='w')
-        #
-        # label = tk.Label(self.root, text="Localidades")
-        # label.grid(row=3, column=0, padx=10, pady=10, sticky='w')
-        # combobox = ttk.Combobox(self.root, state="readonly")
-        # combobox.grid(row=3, column=1, padx=10, pady=10, sticky='w')
-        # Lista de opciones para los comboboxes
-        opciones = ["A", "B", "C", "D", "E"]
+        label_departamentos = tk.Label(self.root, text="Departamentos")
+        label_departamentos.grid(row=2, column=0, padx=10, pady=10, sticky='w')
+        self.departamento_combobox = ttk.Combobox(self.root, state="readonly")
+        self.departamento_combobox.grid(row=2, column=1, padx=10, pady=10, sticky='w')
+        self.departamento_combobox.bind("<<ComboboxSelected>>", self.on_departamento_selected)
 
-        # Crear y colocar los comboboxes y sus labels en la parte izquierda
-        for i, label_text in enumerate(labels):
-            label = tk.Label(self.root, text=label_text)
-            label.grid(row=i + 1, column=0, padx=10, pady=10, sticky='w')
-
-            combobox = ttk.Combobox(self.root, values=opciones)
-            combobox.grid(row=i + 1, column=1, padx=10, pady=10, sticky='w')
+        label_localidades = tk.Label(self.root, text="Localidades")
+        label_localidades.grid(row=3, column=0, padx=10, pady=10, sticky='w')
+        self.localidad_combobox = ttk.Combobox(self.root, state="readonly")
+        self.localidad_combobox.grid(row=3, column=1, padx=10, pady=10, sticky='w')
 
         # Agregar campos para fecha de inicio y fecha final en la parte derecha
         label_fecha_inicio = tk.Label(self.root, text="Fecha de Inicio")
@@ -80,51 +75,60 @@ class filtrame:
         btn_volver.grid(row=6, column=0, padx=10, pady=20, sticky='e')
 
         btn_alquilar = tk.Button(self.root, text="Alquilar Hospedaje", command=self.seleccionar)
-        btn_alquilar.grid(row=6, column=3, padx=10, pady=20, sticky='w')
+        btn_alquilar.grid(row=6, column=4, padx=10, pady=20, sticky='w')
 
         # Ajustar la fila y columna para que el panel de datos ocupe el espacio disponible
         self.root.grid_rowconfigure(5, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
         self.root.grid_columnconfigure(2, weight=1)
 
+        # Cargar provincias al inicializar la interfaz
+        self.cargar_provincias()
+
         # Ejecutar el bucle principal de Tkinter
         self.root.mainloop()
 
-    def Provincias(self):
-        from src.database.Get_info_db import Getinfo
+    def cargar_provincias(self):
         provincias = Getinfo().obtener_provincias()  # Implementa este método para obtener provincias de DB_STAYS
         self.provincia_combobox['values'] = [provincia['nombre'] for provincia in provincias]
         self.provincias_ids = {provincia['nombre']: provincia['provincia_id'] for provincia in provincias}
-    def Localidades(self):
-        opciones = ["A", "B", "C", "D", "E"]
-        return opciones
+
+    def on_provincia_selected(self, event):
+        provincia_seleccionada = self.provincia_combobox.get()
+        provincia_id = self.provincias_ids.get(provincia_seleccionada)
+        self.province_id = provincia_id
+        departamentos = Getinfo().obtener_departamentos(
+            provincia_id)  # Implementa este método para obtener departamentos según provincia
+        self.departamento_combobox['values'] = [departamento['nombre'] for departamento in departamentos]
+        self.departamentos_ids = {departamento['nombre']: departamento['departamento_id'] for departamento in
+                                  departamentos}
+
+    def on_departamento_selected(self, event):
+        departamento_seleccionado = self.departamento_combobox.get()
+        departamento_id = self.departamentos_ids.get(departamento_seleccionado)
+        self.departament_id = departamento_id
+        localidades = Getinfo().obtener_localidades(
+            departamento_id)  # Implementa este método para obtener localidades según departamento
+        self.localidad_combobox['values'] = [localidad['nombre'] for localidad in localidades]
+        self.localidad_id = {localidad['nombre']: localidad['localidad_id'] for localidad in localidades}
+
     def volver(self):
         # Llama a PanelGeneralForm con los parámetros adecuados
         print("Seleccionar botón presionado")
         self.root.destroy()
         from src.form.Panel_general_form import PanelGeneralForm
-        PanelGeneralForm(username=self.username,user_id=self.user_id)
+        PanelGeneralForm(username=self.username, user_id=self.user_id)
 
     def seleccionar(self):
         print("Seleccionar botón presionado")
 
-    # def seleccionar(self):
-    #     # Obtener las fechas seleccionadas
-    #     fecha_inicio = fecha_inicio.get_date()
-    #     fecha_final = fecha_final.get_date()
-    #
-    #     # Verificar que ambas fechas estén seleccionadas
-    #     if fecha_inicio is None or fecha_final is None:
-    #         messagebox.showerror("Error", "Por favor seleccione ambas fechas.")
-    #         return
-    #
-    #     # Verificar que la fecha final no sea menor que la fecha inicial
-    #     if fecha_final < fecha_inicio:
-    #         messagebox.showerror("Error", "La fecha final no puede ser anterior a la fecha inicial.")
-    #         return
-    #
-    #     # Si las validaciones pasan, puedes proceder con tu lógica
-    #     print("Selección válida. Proceder con la acción deseada.")
-    #
-    #     # Ejemplo de lo que podrías hacer después de la validación:
-    #     # Guardar las fechas seleccionadas o realizar alguna acción adicional
+    def buscar_hospedajes(self):
+
+        from src.database.Get_info_db import Getinfo
+        hospedajes = Getinfo.obtener_hospedajes_disponibles(
+            self.province_id,
+            self.departament_id,
+            self.location_id,
+            self.start_date,
+            self.end_date
+        )
