@@ -139,3 +139,39 @@ class Getinfo:
             print(f"Error al obtener el ID de la localidad: {e}")
             return None
 
+    def obtener_hospedajes_disponibles(self, province_id=None, departament_id=None, location_id=None, start_date=None, end_date=None):
+        consulta = """
+            SELECT *
+            FROM DB_STAYS.Hosting AS _hosting 
+            WHERE 
+                (
+                    _hosting.province_id = %s
+                    OR _hosting.depart_id = %s
+                    OR _hosting.location_id = %s
+                )
+                AND _hosting.state = 1
+                AND (
+                    SELECT 
+                        COUNT(*)
+                    FROM DB_STAYS.Rental_Register AS _rental 
+                    WHERE _rental.hosting_id = _hosting.hosting_id
+                        AND (
+                            (_rental.start_date <= %s AND _rental.end_date >= %s)
+                )
+                
+                )=0
+            ;
+        """
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (province_id, departament_id, location_id, end_date, start_date))
+                resultado = cursor.fetchall()
+
+                orden = ''
+
+
+
+
+        except Error as e:
+            print(f"Error al obtener los hospedajes disponibles: {e}")
+            return []
