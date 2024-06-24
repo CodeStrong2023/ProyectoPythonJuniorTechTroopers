@@ -190,3 +190,44 @@ class Getinfo:
         except Error as e:
             print(f"Error al obtener los hospedajes disponibles: {e}")
             return []
+
+    def informacion_hospedaje(self, owner_id):
+        consulta = "SELECT hosting_id,  name_hosting FROM DB_STAYS.Hosting WHERE owner_id=%s"
+        """
+        , address, location_id, capacity, daily_cost, state, province_id, depart_id
+        """
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (owner_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            hospedajes = [{'hosting_id': row[0], 'name_hosting': row[1]} for row in resultados]
+            """
+              'address': row[2], 'location_id': row[3],
+             'capacity': row[4], 'daily_cost': row[5], 'state': row[6], 'province_id': row[7],
+             'depart_id': row[8]} 
+            """
+            return hospedajes
+
+        except Error as e:
+            print(f"Error al ejecutar la consulta: {e}")
+            return []
+
+    def informacion_hospedaje_completa(self, hosting_id):
+        consulta = "SELECT hosting_id, name_hosting, address, location_id, capacity, daily_cost, state, province_id, depart_id FROM DB_STAYS.Hosting WHERE hosting_id=%s"
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (hosting_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            hospedajes = [{'hosting_id': row[0], 'name_hosting': row[1], 'address': row[2], 'location_id': row[3],
+                           'capacity': row[4], 'daily_cost': row[5], 'state': row[6], 'province_id': row[7],
+                           'depart_id': row[8]} for row in resultados]
+
+            return hospedajes
+
+        except Error as e:
+            print(f"Error al ejecutar la consulta: {e}")
+            return []

@@ -78,3 +78,4 @@ class InsertInfo:
         except Error as e:
             print(f"Error al insertar hospedaje: {e}")
             self.conexion.rollback()
+
