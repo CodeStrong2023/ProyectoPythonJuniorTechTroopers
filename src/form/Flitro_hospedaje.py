@@ -211,9 +211,42 @@ class filtrame:
             hospedaje = self.tree.item(selected_item)['values']
             index = self.tree.index(selected_item[0])
 
-            # Llama a la función para manejar el hospedaje seleccionado
-            self.manejar_hospedaje_seleccionado(hospedajes_full_list[index])
+            #Calculamos los dias y el gasto total
+            diferencia = self.fecha_final.get_date() - self.fecha_inicio.get_date()
+            diferencia_dias = diferencia.days
+            costo_por_dia = hospedaje[4]
+            precio_estadia = diferencia_dias * costo_por_dia
 
-    def manejar_hospedaje_seleccionado(self, hospedaje):
-        print(self.user_id)
+            # Llama a la función para manejar el hospedaje seleccionado
+            self.manejar_hospedaje_seleccionado(hospedajes_full_list[index],diferencia_dias , precio_estadia)
+
+
+    def manejar_hospedaje_seleccionado(self, hospedaje, diferencia_dias, precio_estadia):
+
         print(hospedaje)
+        print(self.user_id)
+        self.locador_id = hospedaje[1]
+        self.hosting_id = hospedaje[0]
+        self.ubicacion = hospedaje[10]
+        self.number_of_day = diferencia_dias
+        self.total_cost = precio_estadia
+
+        from src.form.Create_tarjeta import Create_tarjeta
+        Create_tarjeta(username=self.username,
+                       user_id=self.user_id,
+                       locador_id=self.locador_id,
+                       hosting_id=self.hosting_id,
+                       location_id=self.ubicacion,
+                       start_date=start_date,
+                       end_date=end_date,
+                       number_of_days=self.number_of_day,
+                       total_cost=self.total_cost
+                       )
+        # test1
+        # Create_tarjeta(username=self.username,
+        #                user_id=self.user_id,
+        #                locador_id=self.locador_id,
+        #                hosting_id=self.hosting_id,
+        #                location_id=self.ubicacion,
+        #                number_of_days=self.number_of_day
+        #                )

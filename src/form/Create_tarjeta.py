@@ -4,16 +4,21 @@ import re
 
 class Create_tarjeta:
     # Parámetros
-    def __init__(self, username="", user_id="", money="", hosting_id="", location_id="", db_key='1'):
+    def __init__(self, username="", user_id="", locador_id="", hosting_id="", location_id="", start_date="",
+                 end_date="", number_of_days="", total_cost="", db_key='1'):
         self.root = tk.Tk()
         self.root.title("Datos del medio de pago")
 
         # Guarda los parámetros como atributos de instancia
         self.username = username
         self.user_id = user_id
-        self.money = money
+        self.locador_id = locador_id
         self.hosting_id = hosting_id
         self.location_id = location_id
+        self.start_date = start_date
+        self.end_date = end_date
+        self.number_of_days = number_of_days
+        self.total_cost = total_cost
 
         # Variables de control para los widgets de entrada
         self.card_type_var = tk.StringVar(value="Crédito")
@@ -28,24 +33,30 @@ class Create_tarjeta:
 
         # Etiquetas
         ttk.Label(self.root, text="Tipo de tarjeta:").grid(column=0, row=0, padx=10, pady=5)
-        ttk.Radiobutton(self.root, text="Crédito", variable=self.card_type_var, value="Crédito").grid(column=1, row=0, padx=10, pady=5)
-        ttk.Radiobutton(self.root, text="Débito", variable=self.card_type_var, value="Débito").grid(column=2, row=0, padx=10, pady=5)
+        ttk.Radiobutton(self.root, text="Crédito", variable=self.card_type_var, value="Crédito").grid(column=1, row=0,
+                                                                                                      padx=10, pady=5)
+        ttk.Radiobutton(self.root, text="Débito", variable=self.card_type_var, value="Débito").grid(column=2, row=0,
+                                                                                                    padx=10, pady=5)
 
         ttk.Label(self.root, text="Número de tarjeta de 16 dígitos:").grid(column=0, row=1, padx=10, pady=5)
         self.card_number_entry = ttk.Entry(self.root)
         self.card_number_entry.grid(column=1, row=1, padx=10, pady=5, columnspan=2)
 
         ttk.Label(self.root, text="Fecha de vencimiento:").grid(column=0, row=2, padx=10, pady=5)
-        expiration_month_combobox = ttk.Combobox(self.root, textvariable=self.expiration_month_var, values=[f"{i:02d}" for i in range(1, 13)], state="readonly")
+        expiration_month_combobox = ttk.Combobox(self.root, textvariable=self.expiration_month_var,
+                                                 values=[f"{i:02d}" for i in range(1, 13)], state="readonly")
         expiration_month_combobox.grid(column=1, row=2, padx=10, pady=5)
         expiration_month_combobox.set("MM")
 
         current_year = 2024
-        expiration_year_combobox = ttk.Combobox(self.root, textvariable=self.expiration_year_var, values=[str(year) for year in range(current_year, current_year + 11)], state="readonly")
+        expiration_year_combobox = ttk.Combobox(self.root, textvariable=self.expiration_year_var,
+                                                values=[str(year) for year in range(current_year, current_year + 11)],
+                                                state="readonly")
         expiration_year_combobox.grid(column=2, row=2, padx=10, pady=5)
         expiration_year_combobox.set("YYYY")
 
-        ttk.Label(self.root, text="Nombre del titular como figura en la tarjeta:").grid(column=0, row=3, padx=10, pady=5)
+        ttk.Label(self.root, text="Nombre del titular como figura en la tarjeta:").grid(column=0, row=3, padx=10,
+                                                                                        pady=5)
         self.cardholder_name_entry = ttk.Entry(self.root)
         self.cardholder_name_entry.grid(column=1, row=3, padx=10, pady=5, columnspan=2)
 
@@ -53,12 +64,15 @@ class Create_tarjeta:
         self.security_code_entry = ttk.Entry(self.root, show='*')
         self.security_code_entry.grid(column=1, row=4, padx=10, pady=5, columnspan=2)
 
+        # Agregar etiqueta para mostrar el costo total
+        ttk.Label(self.root, text=f"Costo Total: {self.total_cost}").grid(column=0, row=5, padx=10, pady=5, columnspan=3)
+
         # Botones
         submit_button = ttk.Button(self.root, text="Pagar", command=self.submit)
-        submit_button.grid(column=1, row=5, padx=10, pady=10, columnspan=2)
+        submit_button.grid(column=1, row=6, padx=10, pady=10, columnspan=2)
 
         back_button = ttk.Button(self.root, text="Volver", command=self.go_back)
-        back_button.grid(column=0, row=5, padx=10, pady=10)
+        back_button.grid(column=0, row=6, padx=10, pady=10)
 
     def submit(self):
 
@@ -99,6 +113,11 @@ class Create_tarjeta:
             messagebox.showinfo("Pago Exitoso", "Su pago se finalizó con éxito")
             # Cerrar la ventana de datos del medio de pago después de confirmar el pago
             self.root.destroy()
+
     def go_back(self):
         messagebox.showinfo("Volver", "Volviendo al panel anterior..")
         self.root.destroy()
+
+
+# Ejemplo de uso:
+# Create_tarjeta(username="test_user", user_id="123", locador_id="456", hosting_id="789", location_id="001", start_date="2024-06-01", end_date="2024-06-10", number_of_days="10", total_cost="500")

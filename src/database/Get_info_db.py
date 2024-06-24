@@ -151,7 +151,8 @@ class Getinfo:
                  _departamento.nombre,
                  _localidades.nombre,
                  CONCAT(_user.firstname, ' ', _user.lastname),
-                 _user.email
+                 _user.email,
+                 _localidades.localidad_id
 
             FROM DB_STAYS.Hosting AS _hosting 
                 LEFT JOIN DB_STAYS.Departamentos AS _departamento 
