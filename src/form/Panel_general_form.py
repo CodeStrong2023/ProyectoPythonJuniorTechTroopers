@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from src.database.Get_info_db import Getinfo
-from src.form.Administrar_Hospedaje import administrarHospedaje
+from src.form.Administrar_Hospedaje import AdministrarHospedaje
 from src.form.Cargar_Hospedaje import cargarHospedaje
 from src.form.Flitro_hospedaje import filtrame
 
@@ -83,9 +83,8 @@ class PanelGeneralForm:
     def administrar(self):
         # Acción a realizar cuando se haga clic en el botón "Administrar"
         print("Botón 'Administrar' presionado")
-        self.new_window.destroy()
-        administrarHospedaje(username=self.username, user_id=self.user_id)
-        # Aquí puedes agregar la lógica para la funcionalidad de "Administrar"
+        self.root.destroy()
+        AdministrarHospedaje(username=self.username, user_id=self.user_id)
 
     def filtro(self):
         # Aquí se define la acción a realizar cuando se haga clic en los botones
