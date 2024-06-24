@@ -139,39 +139,53 @@ class Getinfo:
             print(f"Error al obtener el ID de la localidad: {e}")
             return None
 
-    def obtener_hospedajes_disponibles(self, province_id=None, departament_id=None, location_id=None, start_date=None, end_date=None):
-        consulta = """
-            SELECT *
+    def obtener_hospedajes_disponibles(self, province_id, departament_id, location_id, start_date, end_date):
+        consulta = f"""
+            SELECT 
+                 _hosting.hosting_id,
+                 _hosting.owner_id,
+                 _hosting.name_hosting,
+                 _hosting.address,
+                 _hosting.capacity,
+                 _hosting.daily_cost,
+                 _departamento.nombre,
+                 _localidades.nombre,
+                 CONCAT(_user.firstname, ' ', _user.lastname),
+                 _user.email
+
             FROM DB_STAYS.Hosting AS _hosting 
+                LEFT JOIN DB_STAYS.Departamentos AS _departamento 
+                    ON _departamento.departamento_id = _hosting.depart_id
+
+                LEFT JOIN DB_STAYS.Localidades AS _localidades
+                    ON _localidades.localidad_id = _hosting.location_id
+
+                LEFT JOIN DB_USERS.Usuarios AS _user
+                    ON _user.user_id = _hosting.owner_id
+
             WHERE 
-                (
-                    _hosting.province_id = %s
-                    OR _hosting.depart_id = %s
-                    OR _hosting.location_id = %s
-                )
-                AND _hosting.state = 1
+                _hosting.state = 1
                 AND (
-                    SELECT 
-                        COUNT(*)
+                    (_hosting.province_id = {province_id})
+                    AND ({location_id if location_id is not None else "NULL"} IS NULL OR _hosting.location_id = {location_id if location_id is not None else "NULL"})
+                    AND ({departament_id if departament_id is not None else "NULL"} IS NULL OR _hosting.depart_id = {departament_id if departament_id is not None else "NULL"})
+                )
+                AND (
+                    SELECT COUNT(*)
                     FROM DB_STAYS.Rental_Register AS _rental 
                     WHERE _rental.hosting_id = _hosting.hosting_id
                         AND (
-                            (_rental.start_date <= %s AND _rental.end_date >= %s)
-                )
-                
-                )=0
+                            (_rental.start_date <= '{end_date}' AND _rental.end_date >= '{start_date}')
+                        )
+                ) = 0
             ;
         """
+
         try:
             with self.conexion.cursor() as cursor:
-                cursor.execute(consulta, (province_id, departament_id, location_id, end_date, start_date))
+                cursor.execute(consulta)
                 resultado = cursor.fetchall()
-
-                orden = ''
-
-
-
-
+                return resultado if resultado else []
         except Error as e:
             print(f"Error al obtener los hospedajes disponibles: {e}")
             return []
