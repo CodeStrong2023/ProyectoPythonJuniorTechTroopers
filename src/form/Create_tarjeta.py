@@ -19,6 +19,17 @@ class Create_tarjeta:
         self.end_date = end_date
         self.number_of_days = number_of_days
         self.total_cost = total_cost
+        
+        # Definimos un diccionario
+        self.datos_rental = {
+            'locator_id': self.locador_id,
+            'renter_id': self.user_id,
+            'hosting_id': self.hosting_id,
+            'start_date': self.start_date,
+            'end_date': self.end_date,
+            'number_of_days': self.number_of_days,
+            'total_cost': self.total_cost
+        }
 
         # Variables de control para los widgets de entrada
         self.card_type_var = tk.StringVar(value="Crédito")
@@ -108,10 +119,11 @@ class Create_tarjeta:
 
         # Confirmación del pago
         confirm = messagebox.askyesno("Confirmar Pago", "¿Está seguro que desea realizar el pago?")
-        if confirm:
-            # Aquí podemos usar los datos guardados en self.username, self.user_id, self.money, etc.
+        # Aquí podemos usar los datos guardados en self.username, self.user_id, self.money, etc.
             messagebox.showinfo("Pago Exitoso", "Su pago se finalizó con éxito")
             # Cerrar la ventana de datos del medio de pago después de confirmar el pago
+            from src.database.Insert_info_db import InsertInfo
+            InsertInfo().crear_orden(self.datos_rental)
             self.root.destroy()
 
     def go_back(self):

@@ -139,7 +139,10 @@ class Getinfo:
             print(f"Error al obtener el ID de la localidad: {e}")
             return None
 
+    
     def obtener_hospedajes_disponibles(self, province_id, departament_id, location_id, start_date, end_date):
+        print('Función hospedaje get')
+
         consulta = f"""
             SELECT 
                  _hosting.hosting_id,
@@ -190,6 +193,7 @@ class Getinfo:
         except Error as e:
             print(f"Error al obtener los hospedajes disponibles: {e}")
             return []
+
 
     def informacion_hospedaje(self, owner_id):
         consulta = "SELECT hosting_id,  name_hosting FROM DB_STAYS.Hosting WHERE owner_id=%s"
