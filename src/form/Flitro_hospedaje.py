@@ -205,19 +205,18 @@ class filtrame:
                                         command=lambda: self.seleccionar_hospedaje(hospedajes))
             btn_seleccionar.pack(pady=10)
 
-      def seleccionar_hospedaje(self, hospedajes_full_list):
+    def seleccionar_hospedaje(self, hospedajes_full_list):
         selected_item = self.tree.selection()
         if selected_item:
             hospedaje = self.tree.item(selected_item)['values']
             index = self.tree.index(selected_item[0])
 
-            #Calculamos los dias y el gasto total
+            # Calculamos los dias y el gasto total
             diferencia = self.fecha_final.get_date() - self.fecha_inicio.get_date()
             diferencia_dias = diferencia.days
 
             # Llama a la función para manejar el hospedaje seleccionado
-            self.manejar_hospedaje_seleccionado(hospedajes_full_list[index],diferencia_dias)
-
+            self.manejar_hospedaje_seleccionado(hospedajes_full_list[index], diferencia_dias)
 
     def manejar_hospedaje_seleccionado(self, hospedaje, diferencia_dias):
         print(f'hospedaje[4]{hospedaje[4]}, hospedaje[5]{hospedaje[5]}')
