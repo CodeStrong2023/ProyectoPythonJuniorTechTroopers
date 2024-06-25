@@ -79,3 +79,33 @@ class InsertInfo:
             print(f"Error al insertar hospedaje: {e}")
             self.conexion.rollback()
 
+    def crear_orden(self, datos_rental):
+        consulta = """
+        INSERT INTO DB_STAYS.Rental_Register (
+            locator_id,
+            renter_id,
+            hosting_id,
+            start_date,
+            end_date,
+            number_of_days,
+            total_cost
+              )
+        VALUES ( %s, %s, %s, %s, %s, %s, %s);       
+        """
+        try:
+            cursor = self.conexion.cursor()
+            cursor.execute(consulta, (
+                datos_rental['locator_id'],
+                datos_rental['renter_id'],
+                datos_rental['hosting_id'],
+                datos_rental['start_date'],
+                datos_rental['end_date'],
+                datos_rental['number_of_days'],
+                datos_rental['total_cost'],
+            ))
+            self.conexion.commit()
+            cursor.close()
+            print("Hospedaje insertado correctamente.")
+        except Error as e:
+            print(f"Error al insertar hospedaje: {e}")
+            self.conexion.rollback()
