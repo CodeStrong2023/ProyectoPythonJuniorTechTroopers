@@ -193,9 +193,7 @@ class Getinfo:
 
     def informacion_hospedaje(self, owner_id):
         consulta = "SELECT hosting_id,  name_hosting FROM DB_STAYS.Hosting WHERE owner_id=%s"
-        """
-        , address, location_id, capacity, daily_cost, state, province_id, depart_id
-        """
+
         try:
             with self.conexion.cursor() as cursor:
                 cursor.execute(consulta, (owner_id,))
@@ -203,11 +201,7 @@ class Getinfo:
 
             # Convertir resultados a una lista de diccionarios
             hospedajes = [{'hosting_id': row[0], 'name_hosting': row[1]} for row in resultados]
-            """
-              'address': row[2], 'location_id': row[3],
-             'capacity': row[4], 'daily_cost': row[5], 'state': row[6], 'province_id': row[7],
-             'depart_id': row[8]} 
-            """
+
             return hospedajes
 
         except Error as e:
@@ -231,3 +225,21 @@ class Getinfo:
         except Error as e:
             print(f"Error al ejecutar la consulta: {e}")
             return []
+
+    def obtener_registros_activos(self, hosting_id):
+        consulta = """
+        SELECT COUNT(*)
+        FROM DB_STAYS.Rental_Register
+        WHERE hosting_id = %s AND end_date > CURRENT_DATE;
+        """
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (hosting_id,))
+                resultado = cursor.fetchone()
+                if resultado:
+                    return resultado[0]  # Devuelve el conteo de registros activos
+                else:
+                    return 0  # Si no hay registros, devuelve 0
+        except Error as e:
+            print(f"Error al obtener el conteo de registros: {e}")
+            return None

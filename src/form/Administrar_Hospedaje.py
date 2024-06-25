@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from src.database.Get_info_db import Getinfo
+import src.form.Panel_general_form as panel_general
 from src.form.Editar_Hospedaje import EditarHospedaje
 
 class AdministrarHospedaje:
@@ -54,16 +55,28 @@ class AdministrarHospedaje:
             self.hospedajes_ids = {hospedaje['name_hosting']: hospedaje['hosting_id'] for hospedaje in hospedajes}
             print(f"Hospedajes: {self.hospedaje_combobox['values']}")
 
+    def on_volver_click(self):
+        print("Volver")
+        self.root.destroy()
+        panel_general.PanelGeneralForm(username=self.username,user_id=self.user_id)
+
+
     def on_hospedaje_selected(self, event):
         self.hospedaje_seleccionada = self.hospedaje_combobox.get()
 
     def on_editar_click(self):
-        print("Editar")
-        self.root.destroy()
-        hospedaje_id = self.hospedajes_ids.get(self.hospedaje_seleccionada)
-        EditarHospedaje(username=self.username, user_id=self.user_id, hospedaje_id=hospedaje_id)
+        try:
+            print("Editar")
+            hospedaje_id = self.hospedajes_ids.get(self.hospedaje_seleccionada)
+            hospedaje_activo = Getinfo().obtener_registros_activos(hospedaje_id)
+
+            if hospedaje_activo == 0:
+                self.root.destroy()
+                EditarHospedaje(username=self.username, user_id=self.user_id, hospedaje_id=hospedaje_id)
+            else:
+                messagebox.showerror("Error", f"El hospedaje no se puede editar, por estar en periodo de renta")
+        except Exception as e:
+            messagebox.showerror("Error", f"Hubo un problema al procesar la acción de editar el hospedaje: {e}")
 
 
-    def on_volver_click(self):
-        print("Volver")
-        self.root.destroy()
+
