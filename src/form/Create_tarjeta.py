@@ -119,11 +119,14 @@ class Create_tarjeta:
 
         # Confirmación del pago
         confirm = messagebox.askyesno("Confirmar Pago", "¿Está seguro que desea realizar el pago?")
-        # Aquí podemos usar los datos guardados en self.username, self.user_id, self.money, etc.
+        if confirm:
+            # Aquí podemos usar los datos guardados en self.username, self.user_id, self.money, etc.
             messagebox.showinfo("Pago Exitoso", "Su pago se finalizó con éxito")
             # Cerrar la ventana de datos del medio de pago después de confirmar el pago
             from src.database.Insert_info_db import InsertInfo
             InsertInfo().crear_orden(self.datos_rental)
+            from src.database.Actualizar_info_db import ActualizarInfo
+            ActualizarInfo().actualizar_money_owner_id(self.total_cost,self.locador_id)
             self.root.destroy()
 
     def go_back(self):
