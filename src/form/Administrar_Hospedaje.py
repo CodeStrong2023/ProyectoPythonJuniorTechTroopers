@@ -46,10 +46,12 @@ class AdministrarHospedaje:
         self.root.mainloop()
 
     def cargar_hospedaje(self):
-        hospedajes = Getinfo().informacion_hospedaje(self.user_id)  # Implementa este método para obtener provincias de DB_STAYS
+        hospedajes = Getinfo().informacion_hospedaje(
+            self.user_id)  # Implementa este método para obtener provincias de DB_STAYS
         if not hospedajes:
             messagebox.showerror("Error", "No tiene hospedajes cargados.")
             self.root.destroy()
+            panel_general.PanelGeneralForm(username=self.username, user_id=self.user_id)
         else:
             self.hospedaje_combobox['values'] = [hospedaje['name_hosting'] for hospedaje in hospedajes]
             self.hospedajes_ids = {hospedaje['name_hosting']: hospedaje['hosting_id'] for hospedaje in hospedajes}

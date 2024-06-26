@@ -247,3 +247,105 @@ class Getinfo:
         except Error as e:
             print(f"Error al obtener el conteo de registros: {e}")
             return None
+
+
+    def informacion_alquiler(self, renter_id):
+        consulta = """
+        SELECT 
+            _hosting.name_hosting,
+            _hosting.address,
+            CONCAT(COALESCE(_localidades.nombre, ''), ', ', COALESCE(_departamento.nombre, ''), ', ', COALESCE(_provincia.nombre, '')),
+            CONCAT(_usuario_creador.firstname,', ',_usuario_creador.lastname),
+            _usuario_creador.email,
+            _rental.start_date,
+            _rental.end_date
+    
+    
+        FROM DB_STAYS.Rental_Register AS _rental
+    
+            LEFT JOIN DB_STAYS.Hosting AS _hosting
+                ON  _hosting.hosting_id = _rental.hosting_id 
+    
+            LEFT JOIN DB_STAYS.Localidades AS _localidades
+                ON _localidades.localidad_id =_hosting.location_id
+    
+            LEFT JOIN DB_USERS.Usuarios AS _usuario_creador
+                ON _usuario_creador.user_id = _rental.locator_id
+    
+            LEFT JOIN DB_STAYS.Provincias AS _provincia
+                ON _provincia.provincia_id = _hosting.province_id
+    
+            LEFT JOIN DB_STAYS.Departamentos AS _departamento
+                ON _departamento.departamento_id = _hosting.depart_id
+    
+        WHERE _rental.renter_id = %s
+        """
+
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (renter_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            alquileres = []
+            for row in resultados:
+                alquiler = {
+                    'name_hosting': row[0],
+                    'address': row[1],
+                    'ubicacion': row[2],
+                    'nombre_completo': row[3],
+                    'email': row[4],
+                    'start_date': row[5],
+                    'end_date': row[6],
+                }
+                alquileres.append(alquiler)
+
+            return alquileres
+
+        except Error as e:
+            print(f"Error al ejecutar la consulta: {e}")
+            return []
+
+
+    def informacion_dueño(self, locator_id):
+        consulta = """
+        SELECT 
+            _hosting.name_hosting,
+            CONCAT(_usuario_inquilino.firstname, ', ', _usuario_inquilino.lastname) AS nombre_completo,
+            _usuario_inquilino.email,
+            _rental.start_date,
+            _rental.end_date
+    
+        FROM DB_STAYS.Rental_Register AS _rental
+    
+            LEFT JOIN DB_STAYS.Hosting AS _hosting
+                ON  _hosting.hosting_id = _rental.hosting_id 
+    
+            LEFT JOIN DB_USERS.Usuarios AS _usuario_inquilino
+                ON _usuario_inquilino.user_id = _rental.locator_id
+    
+        WHERE _rental.locator_id = %s
+        """
+
+        try:
+            with self.conexion.cursor() as cursor:
+                cursor.execute(consulta, (locator_id,))
+                resultados = cursor.fetchall()
+
+            # Convertir resultados a una lista de diccionarios
+            alquileres = []
+            for row in resultados:
+                alquiler = {
+                    'name_hosting': row[0],
+                    'nombre_completo': row[1],
+                    'email': row[2],
+                    'start_date': row[3],
+                    'end_date': row[4],
+                }
+                alquileres.append(alquiler)
+
+            return alquileres
+
+        except Error as e:
+            print(f"Error al ejecutar la consulta: {e}")
+            return []
