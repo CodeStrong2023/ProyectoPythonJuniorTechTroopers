@@ -162,7 +162,7 @@ class filtrame:
         self.buscar_hospedajes()
 
     def buscar_hospedajes(self):
-        print('te entro')
+        print('Metodo Buscar Hospedajes')
 
         if (start_date and end_date) is not None:
             if start_date > end_date:

@@ -146,7 +146,7 @@ class Getinfo:
         consulta = f"""
             SELECT 
                  _hosting.hosting_id,
-                 _hosting.owner_id,
+                 _hosting.owner_id,D
                  _hosting.name_hosting,
                  _hosting.address,
                  _hosting.capacity,
